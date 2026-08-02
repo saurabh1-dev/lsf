@@ -6283,7 +6283,7 @@ ul {
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(rgba(18, 22, 25, 0.75), rgba(18, 22, 25, 0.85)),
-    url('images/2.jpg') center/cover no-repeat;
+    url('mainherobanner.png') center/cover no-repeat;
   padding: 24px 40px 40px 40px;
   display: flex;
   flex-direction: column;

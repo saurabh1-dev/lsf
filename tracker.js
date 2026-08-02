@@ -94,7 +94,7 @@
           </button>
           
           <div class="lsf-popup-header">
-            <img src="images/logo.png" alt="Leopard Security Logo" style="height: 55px; width: auto; object-fit: contain; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;">
+            <img src="logo.png" alt="Leopard Security Logo" style="height: 55px; width: auto; object-fit: contain; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto;">
             <h3>Rate Our Security Service</h3>
             <p>Please share your rating to automatically update our Google Review profile</p>
           </div>
