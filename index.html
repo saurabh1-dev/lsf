@@ -677,38 +677,46 @@
     /* Star Rating */
     .intake-stars {
       display: flex;
-      gap: .45rem;
+      gap: 0.6rem;
       justify-content: center;
-      margin: .5rem 0 1rem;
+      margin: 1rem 0 1.2rem;
+      padding: 0.5rem;
+      background: rgba(255, 215, 0, 0.04);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 215, 0, 0.15);
     }
 
     .intake-star-btn {
       background: none;
-      padding: .2rem;
+      padding: 0.3rem;
       border-radius: 8px;
-      transition: transform .15s ease;
+      transition: transform 0.2s ease;
       border: none;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .intake-star-btn:hover {
-      transform: scale(1.15);
+      transform: scale(1.2);
     }
 
     .intake-star-btn svg {
-      width: 38px;
-      height: 38px;
-      stroke: #F97316;
-      stroke-width: 1.8;
-      fill: rgba(249, 115, 22, 0.18);
-      transition: all .15s ease;
+      width: 42px;
+      height: 42px;
+      stroke: #FFD700;
+      stroke-width: 2.2;
+      fill: rgba(255, 215, 0, 0.22);
+      transition: all 0.2s ease;
+      filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
     }
 
     .intake-star-btn:hover svg,
     .intake-star-btn.active svg {
-      fill: #F97316;
-      stroke: #FF8C00;
-      filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6));
+      fill: #FFD700;
+      stroke: #FFA500;
+      filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.95)) drop-shadow(0 0 4px rgba(255, 165, 0, 0.8));
     }
 
     .intake-rating-hint {
