@@ -834,7 +834,9 @@
         const images = imageFiles.map((name) => ({
           name,
           src: `images/${encodeURI(name)}`,
-          fallbackSrc: `images/${encodeURIComponent(name)}`,
+          fallbackSrc1: encodeURI(name),
+          fallbackSrc2: `images/${encodeURIComponent(name)}`,
+          fallbackSrc3: encodeURIComponent(name),
           type: 'image',
           title: formatTitle(name),
           caption: 'Field archive image'
@@ -845,9 +847,11 @@
           return {
             name,
             src: `images/${encodeURI(name)}`,
-            fallbackSrc1: `images/${encodeURIComponent(name)}`,
-            fallbackSrc2: `images/${name}`,
+            fallbackSrc1: encodeURI(name),
+            fallbackSrc2: `images/${encodeURIComponent(name)}`,
+            fallbackSrc3: encodeURIComponent(name),
             poster: `images/${encodeURI(posterName)}`,
+            posterFallback: encodeURI(posterName),
             type: 'video',
             title: formatTitle(name),
             caption: 'Field archive video'
@@ -872,6 +876,32 @@
       let activeIndex = 0;
       const galleryItems = createItems();
 
+      const handleImgError = (img, item) => {
+        if (!img.dataset.t) {
+          img.dataset.t = '1';
+          img.src = item.fallbackSrc1;
+        } else if (img.dataset.t === '1') {
+          img.dataset.t = '2';
+          img.src = item.fallbackSrc2;
+        } else if (img.dataset.t === '2') {
+          img.dataset.t = '3';
+          img.src = item.fallbackSrc3;
+        }
+      };
+
+      const handleVidError = (vid, item) => {
+        if (!vid.dataset.t) {
+          vid.dataset.t = '1';
+          vid.src = item.fallbackSrc1;
+        } else if (vid.dataset.t === '1') {
+          vid.dataset.t = '2';
+          vid.src = item.fallbackSrc2;
+        } else if (vid.dataset.t === '2') {
+          vid.dataset.t = '3';
+          vid.src = item.fallbackSrc3;
+        }
+      };
+
       const renderTile = (item, index) => {
         const overlayLabel = item.type === 'video'
           ? '<div class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>'
@@ -880,14 +910,14 @@
         if (item.type === 'image') {
           return `
             <article class="tile" data-index="${index}" data-type="image">
-              <img src="${item.src}" onerror="this.onerror=null;this.src='${item.fallbackSrc}'" loading="lazy" alt="${item.title}">
+              <img src="${item.src}" onerror="if(!this.dataset.t){this.dataset.t='1';this.src='${item.fallbackSrc1}';}else if(this.dataset.t==='1'){this.dataset.t='2';this.src='${item.fallbackSrc2}';}else if(this.dataset.t==='2'){this.dataset.t='3';this.src='${item.fallbackSrc3}';}" loading="lazy" alt="${item.title}">
               ${overlayLabel}
             </article>
           `;
         } else {
           return `
             <article class="tile" data-index="${index}" data-type="video">
-              <video src="${item.src}" poster="${item.poster}" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${item.fallbackSrc1}';}else if(this.dataset.tried==='1'){this.dataset.tried='2';this.src='${item.fallbackSrc2}';}" muted preload="metadata" playsinline aria-label="${item.title}"></video>
+              <video src="${item.src}" poster="${item.poster}" onerror="if(!this.dataset.t){this.dataset.t='1';this.src='${item.fallbackSrc1}';}else if(this.dataset.t==='1'){this.dataset.t='2';this.src='${item.fallbackSrc2}';}else if(this.dataset.t==='2'){this.dataset.t='3';this.src='${item.fallbackSrc3}';}" muted preload="metadata" playsinline aria-label="${item.title}"></video>
               ${overlayLabel}
             </article>
           `;
@@ -904,9 +934,9 @@
         if (!item) return;
 
         if (item.type === 'video') {
-          lbMedia.innerHTML = `<video controls autoplay preload="auto" playsinline src="${item.src}" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='${item.fallbackSrc1}';}else if(this.dataset.tried==='1'){this.dataset.tried='2';this.src='${item.fallbackSrc2}';}"></video>`;
+          lbMedia.innerHTML = `<video controls autoplay preload="auto" playsinline src="${item.src}" onerror="if(!this.dataset.t){this.dataset.t='1';this.src='${item.fallbackSrc1}';}else if(this.dataset.t==='1'){this.dataset.t='2';this.src='${item.fallbackSrc2}';}else if(this.dataset.t==='2'){this.dataset.t='3';this.src='${item.fallbackSrc3}';}"></video>`;
         } else {
-          lbMedia.innerHTML = `<img src="${item.src}" onerror="this.onerror=null;this.src='${item.fallbackSrc}'" alt="${item.title}">`;
+          lbMedia.innerHTML = `<img src="${item.src}" onerror="if(!this.dataset.t){this.dataset.t='1';this.src='${item.fallbackSrc1}';}else if(this.dataset.t==='1'){this.dataset.t='2';this.src='${item.fallbackSrc2}';}else if(this.dataset.t==='2'){this.dataset.t='3';this.src='${item.fallbackSrc3}';}" alt="${item.title}">`;
         }
 
         lbTitle.textContent = item.title;
