@@ -933,7 +933,7 @@ svg {
     .btn-ghost,
     .btn-outline,
     .btn-fill,
-    button:not(.faq-question):not(.lsf-chat-close):not(.lsf-chat-opt) {
+    button:not(.faq-question):not(.lsf-chat-close):not(.lsf-chat-opt):not(.intake-star-btn):not(.lsf-star) {
         width: 100% !important;
         display: inline-flex !important;
         align-items: center !important;
