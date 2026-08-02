@@ -1,0 +1,2500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industries We Protect | Leopard Security Force</title>
+  <meta name="description"
+    content="Leopard Security Force delivers trained, verified security personnel and technology-enabled protection across 20+ industries in India — manufacturing, corporate, healthcare, hospitality, residential, education, infrastructure and government.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tracker.css">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    /* ============ TOKENS ============ */
+    :root {
+      --red: #F97316;
+      --red-deep: #EA580C;
+      --black: #0B0B0B;
+      --orange: #F97316;
+      --white: #FFFFFF;
+      --off: #F3F3F2;
+      --off-2: #E9E7E4;
+      --ink: #141414;
+      --muted: rgba(255, 255, 255, 0.65);
+      --line: rgba(255, 255, 255, 0.08);
+      --line-soft: rgba(255, 255, 255, 0.05);
+      --bg: #0B0B0B;
+      --surface: #181818;
+      --surface-2: #1F1F1F;
+      --text: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.68);
+      --line-dark: rgba(255, 255, 255, 0.10);
+      --line-dark-soft: rgba(255, 255, 255, 0.07);
+      --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.45);
+      --shadow-sm: 0 8px 24px -12px rgba(0, 0, 0, 0.32);
+      --radius: 18px;
+      --radius-sm: 10px;
+      --container: 1260px;
+      --ease: cubic-bezier(.22, .61, .36, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      line-height: 1.12;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: var(--orange);
+      display: inline-block;
+    }
+
+    .tag-lines {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 14px;
+    }
+
+    .tag-lines span {
+      display: block;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), var(--orange), transparent);
+      box-shadow: 0 0 8px rgba(211, 47, 47, 0.6);
+    }
+
+    .tag-lines span:nth-child(1) {
+      width: 56px;
+    }
+
+    .tag-lines span:nth-child(2) {
+      width: 30px;
+      opacity: .65;
+    }
+
+    .section-head.center .tag-lines {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-head:not(.center) .tag-lines {
+      align-items: flex-start;
+    }
+
+    .section-head:not(.center) .tag-lines span {
+      background: linear-gradient(90deg, var(--red), var(--orange), transparent);
+    }
+
+    /* tactical grid + radar target decorations, reusable across sections */
+    .tactical-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 85%);
+    }
+
+    .radar-rings {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(211, 47, 47, 0.14);
+    }
+
+    .radar-rings::before,
+    .radar-rings::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(249, 115, 22, 0.10);
+    }
+
+    .radar-rings.tr {
+      top: -18%;
+      right: -10%;
+      width: 640px;
+      height: 640px;
+    }
+
+    .radar-rings.tr::before {
+      inset: 70px;
+    }
+
+    .radar-rings.tr::after {
+      inset: 150px;
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .radar-rings.bl {
+      bottom: -22%;
+      left: -12%;
+      width: 560px;
+      height: 560px;
+    }
+
+    .radar-rings.bl::before {
+      inset: 60px;
+    }
+
+    .radar-rings.bl::after {
+      inset: 130px;
+      border-color: rgba(255, 255, 255, 0.045);
+    }
+
+    .section-head {
+      max-width: 680px;
+      margin-bottom: 52px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      margin-top: 14px;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 16.5px;
+      margin-top: 16px;
+      max-width: 600px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    section {
+      position: relative;
+    }
+
+    .pad {
+      padding: 96px 0;
+    }
+
+    .pad-sm {
+      padding: 64px 0;
+    }
+
+    /* reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+
+    /* Support both .in (inline JS) and .active (script.js) */
+    .reveal.in,
+    .reveal.active {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* === Mobile/Tablet: force section headers visible regardless of reveal state === */
+    @media (max-width: 1024px) {
+      .section-head {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+        padding: 0 12px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(22px, 6vw, 34px) !important;
+        color: #ffffff !important;
+        line-height: 1.25 !important;
+        margin-top: 10px !important;
+      }
+
+      .section-head p {
+        font-size: 14px !important;
+        color: rgba(255, 255, 255, 0.72) !important;
+        margin-top: 10px !important;
+      }
+
+      .eyebrow {
+        opacity: 1 !important;
+        display: flex !important;
+        font-size: 11px !important;
+        color: #E1441C !important;
+        letter-spacing: 2px !important;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 30px;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-deep) 100%);
+      color: var(--white);
+      box-shadow: 0 14px 30px -12px rgba(249, 115, 22, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px -12px rgba(249, 115, 22, 0.65);
+    }
+
+    .btn-pill {
+      border-radius: 999px;
+      box-shadow: 0 0 0 1px rgba(211, 47, 47, 0.3), 0 10px 26px -10px rgba(211, 47, 47, 0.75), 0 0 20px rgba(211, 47, 47, 0.35);
+    }
+
+    .btn-pill:hover {
+      box-shadow: 0 0 0 1px rgba(211, 47, 47, 0.4), 0 16px 32px -10px rgba(211, 47, 47, 0.85), 0 0 28px rgba(249, 115, 22, 0.4);
+    }
+
+    .btn-outline {
+      border: 1.5px solid var(--orange);
+      color: var(--orange);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--orange);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline.dark {
+      border-color: rgba(255, 255, 255, 0.5);
+      color: var(--white);
+    }
+
+    .btn-outline.dark:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .btn-ghost {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--black);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+    }
+
+    .btn-ghost svg {
+      width: 14px;
+      height: 14px;
+      transition: transform .25s var(--ease);
+    }
+
+    .btn-ghost:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* ============ ICONS ============ */
+    .ic {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ============ HEADER ============ */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 18px 0;
+      transition: background .35s var(--ease), padding .35s var(--ease), box-shadow .35s var(--ease);
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header.solid {
+      background: rgba(11, 11, 12, 0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 0 var(--line-dark);
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--red), var(--red-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 8px 18px -8px rgba(249, 115, 22, .6);
+    }
+
+    .brand-mark svg {
+      width: 24px;
+      height: 24px;
+      stroke: #fff;
+    }
+
+    .brand-text {
+      line-height: 1.1;
+      color: var(--white);
+      transition: color .35s var(--ease);
+    }
+
+    header.solid .brand-text {
+      color: var(--text);
+    }
+
+    .brand-text b {
+      display: block;
+      font-size: 16.5px;
+      font-weight: 700;
+      letter-spacing: .03em;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: var(--orange);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    nav a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      position: relative;
+      padding-bottom: 4px;
+      transition: color .3s;
+    }
+
+    header.solid nav a {
+      color: rgba(245, 244, 242, 0.85);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width .3s var(--ease);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .header-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    header.solid .header-phone {
+      color: var(--text);
+    }
+
+    .header-phone svg {
+      width: 16px;
+      height: 16px;
+      color: var(--orange);
+    }
+
+    .navtoggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    header.solid .navtoggle {
+      color: var(--text);
+    }
+
+    .navtoggle svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(ellipse 900px 500px at 82% 18%, rgba(249, 115, 22, 0.28), transparent 60%),
+        radial-gradient(ellipse 700px 600px at 8% 90%, rgba(249, 115, 22, 0.14), transparent 60%),
+        linear-gradient(160deg, #0b0b0c 0%, #161616 55%, #1c1414 100%);
+      overflow: hidden;
+      padding-top: 110px;
+      padding-bottom: 70px;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: radial-gradient(ellipse 90% 70% at 60% 40%, black 30%, transparent 85%);
+    }
+
+    .hero-sweep {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 900px;
+      height: 900px;
+      border-radius: 50%;
+      border: 1px solid rgba(249, 115, 22, 0.18);
+      animation: spin 40s linear infinite;
+    }
+
+    .hero-sweep::before,
+    .hero-sweep::after {
+      content: "";
+      position: absolute;
+      inset: 80px;
+      border-radius: 50%;
+      border: 1px solid rgba(249, 115, 22, 0.13);
+    }
+
+    .hero-sweep::after {
+      inset: 180px;
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-copy {
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-copy .tag-lines {
+      align-items: center;
+    }
+
+    .hero-copy p {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-copy .eyebrow {
+      color: var(--orange);
+    }
+
+    .hero-copy .eyebrow::before {
+      background: var(--red);
+    }
+
+    .hero-copy .tag-lines {
+      align-items: flex-start;
+    }
+
+    .hero-copy .tag-lines span {
+      background: linear-gradient(90deg, var(--red), var(--orange), transparent);
+    }
+
+    .hero-copy h1 {
+      color: var(--white);
+      font-size: clamp(40px, 5.6vw, 68px);
+      margin-top: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-copy h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-copy .sub {
+      color: rgba(255, 255, 255, 0.82);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 19px;
+      margin-top: 18px;
+      letter-spacing: .01em;
+    }
+
+    .hero-copy p {
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 16px;
+      margin-top: 18px;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 38px;
+      flex-wrap: wrap;
+    }
+
+    /* radar + crosshair visual — decorative, absolutely positioned so it never adds page height */
+    .hero-visual {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(560px, 70vw);
+      aspect-ratio: 1/1.05;
+      z-index: 0;
+      opacity: 0.5;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar-target {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .radar-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(249, 115, 22, 0.28);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .radar-ring.r1 {
+      width: 100%;
+      height: 100%;
+      border-color: rgba(211, 47, 47, 0.22);
+    }
+
+    .radar-ring.r2 {
+      width: 76%;
+      height: 76%;
+      border-color: rgba(249, 115, 22, 0.28);
+    }
+
+    .radar-ring.r3 {
+      width: 50%;
+      height: 50%;
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .radar-ring.r4 {
+      width: 26%;
+      height: 26%;
+      border-color: rgba(211, 47, 47, 0.4);
+      box-shadow: 0 0 24px rgba(211, 47, 47, 0.25) inset;
+    }
+
+    .radar-sweep {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 2px;
+      transform-origin: left center;
+      transform: translateY(-50%) rotate(0deg);
+      background: linear-gradient(90deg, rgba(211, 47, 47, 0.85), transparent);
+      animation: radarspin 6s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(211, 47, 47, 0.6));
+    }
+
+    @keyframes radarspin {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    .crosshair-h,
+    .crosshair-v {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .crosshair-h {
+      width: 60%;
+      height: 1px;
+      transform: translate(-50%, -50%);
+    }
+
+    .crosshair-v {
+      width: 1px;
+      height: 60%;
+      transform: translate(-50%, -50%);
+    }
+
+    .crosshair-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 18px 4px rgba(211, 47, 47, 0.75), 0 0 40px 10px rgba(249, 115, 22, 0.25);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.25);
+      }
+    }
+
+    .blip {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 10px 2px rgba(249, 115, 22, 0.7);
+    }
+
+    .blip.b1 {
+      top: 20%;
+      left: 66%;
+      animation: blink 3s ease-in-out infinite;
+    }
+
+    .blip.b2 {
+      top: 70%;
+      left: 28%;
+      animation: blink 3s ease-in-out infinite 1.4s;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* ============ CLIENTS ============ */
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+
+    /* ============ WHY US ============ */
+    .why {
+      background: var(--surface);
+    }
+
+
+    /* ============ PROCESS v2 — tactical case-file steps ============ */
+    .process {
+      background: var(--bg);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .tl-step {
+      position: relative;
+      z-index: 2;
+      text-align: left;
+      background: linear-gradient(165deg, var(--surface-2) 0%, var(--surface) 100%);
+      border: 1px solid var(--line-dark);
+      padding: 22px 18px 20px;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s var(--ease), transform .6s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+    }
+
+    .tl-step.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tl-step:hover {
+      border-color: rgba(211, 47, 47, 0.45);
+      box-shadow: 0 22px 42px -22px rgba(211, 47, 47, .4);
+      transform: translateY(-5px);
+    }
+
+    .tl-num {
+      position: absolute;
+      top: -10px;
+      right: 2px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 66px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+      transition: color .4s var(--ease);
+    }
+
+    .tl-step.on .tl-num,
+    .tl-step:hover .tl-num {
+      color: rgba(211, 47, 47, 0.13);
+    }
+
+    .tl-tag {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .tl-tag::before {
+      content: "";
+      width: 16px;
+      height: 1px;
+      background: var(--orange);
+    }
+
+    .tl-step h4 {
+      position: relative;
+      z-index: 2;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      margin-bottom: 6px;
+    }
+
+    .tl-step p {
+      position: relative;
+      z-index: 2;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .tl-step::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      transition: width .7s var(--ease);
+    }
+
+    .tl-step.on::after {
+      width: 100%;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media(max-width:1080px) {
+      .ind-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero .container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .foot-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:860px) {
+
+      nav,
+      .header-phone {
+        display: none;
+      }
+
+      .navtoggle {
+        display: flex;
+      }
+
+      .hero-stats .container {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 24px;
+      }
+
+      .timeline {
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 20px;
+      }
+    }
+
+    @media(max-width:640px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .pad {
+        padding: 64px 0;
+      }
+
+      .ind-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-list {
+        grid-template-columns: 1fr;
+      }
+
+      .foot-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ============ CLIENTS v2 — premium marquee with glow lines ============ */
+    .clients {
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0;
+      background:
+        radial-gradient(ellipse 800px 400px at 15% 0%, rgba(211, 47, 47, 0.10), transparent 60%),
+        radial-gradient(ellipse 800px 400px at 85% 100%, rgba(249, 115, 22, 0.08), transparent 60%),
+        var(--surface);
+    }
+
+    .glow-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .glow-line {
+      position: absolute;
+      left: -10%;
+      width: 120%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(211, 47, 47, 0.55), rgba(249, 115, 22, 0.35), transparent);
+    }
+
+    .glow-line.l1 {
+      top: 14%;
+      animation: driftL 26s linear infinite;
+    }
+
+    .glow-line.l2 {
+      top: 34%;
+      animation: driftR 32s linear infinite;
+      opacity: 0.7;
+    }
+
+    .glow-line.l3 {
+      top: 58%;
+      animation: driftL 22s linear infinite;
+      opacity: 0.6;
+    }
+
+    .glow-line.l4 {
+      top: 80%;
+      animation: driftR 38s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes driftL {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-8%);
+      }
+    }
+
+    @keyframes driftR {
+      from {
+        transform: translateX(-8%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .clients .section-head {
+      position: relative;
+      z-index: 2;
+    }
+
+    .client-marquee {
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+      margin-bottom: 14px;
+    }
+
+    .client-marquee:last-child {
+      margin-bottom: 0;
+    }
+
+    .client-track {
+      display: flex;
+      gap: 12px;
+      width: max-content;
+      animation: marquee 55s linear infinite;
+    }
+
+    .client-track.track-reverse {
+      animation: marquee 55s linear infinite;
+      animation-delay: -20s;
+    }
+
+    .client-marquee:hover .client-track {
+      animation-play-state: paused;
+    }
+
+    .client-card {
+      position: relative;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 12px 20px 12px 22px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 18px -12px rgba(0, 0, 0, .7);
+      transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+    }
+
+    .client-card::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 24%;
+      bottom: 24%;
+      width: 3px;
+      border-radius: 3px;
+      background: linear-gradient(180deg, var(--red), var(--orange));
+      opacity: .55;
+      transition: opacity .35s var(--ease);
+    }
+
+    .client-card span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 12.5px;
+      letter-spacing: .03em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .client-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(211, 47, 47, 0.45);
+      background: rgba(211, 47, 47, 0.07);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 16px 30px -16px rgba(211, 47, 47, .55);
+    }
+
+    .client-card:hover::before {
+      opacity: 1;
+    }
+
+    /* ============ INDUSTRIES v3 — tactical dossier cards ============ */
+    .industries {
+      background: var(--bg);
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .industries .section-head {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .ind-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .ind-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ind-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+    }
+
+    .ind-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: rgba(18, 20, 24, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 26px 24px 0;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+      transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+    }
+
+    .ind-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #E1441C, #F97316, transparent);
+      opacity: 0.4;
+      transition: opacity .35s var(--ease);
+    }
+
+    .ind-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(225, 68, 28, 0.45);
+      box-shadow: 0 20px 45px rgba(225, 68, 28, 0.2), 0 10px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .ind-card:hover::before {
+      opacity: 1;
+    }
+
+    .ind-watermark {
+      position: absolute;
+      top: -10px;
+      right: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 76px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.03);
+      letter-spacing: 0;
+      pointer-events: none;
+      transition: color .35s var(--ease);
+    }
+
+    .ind-card:hover .ind-watermark {
+      color: rgba(225, 68, 28, 0.12);
+    }
+
+    .ind-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .ind-icon {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: rgba(225, 68, 28, 0.12);
+      border: 1px solid rgba(225, 68, 28, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease);
+    }
+
+    .ind-card:hover .ind-icon {
+      transform: scale(1.06);
+      background: linear-gradient(135deg, #E1441C, #F97316);
+      border-color: #F97316;
+      box-shadow: 0 0 16px rgba(225, 68, 28, 0.5);
+    }
+
+    .ind-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: #E1441C;
+      transition: stroke .3s var(--ease);
+    }
+
+    .ind-card:hover .ind-icon svg {
+      stroke: #ffffff;
+    }
+
+    .ind-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      letter-spacing: .16em;
+      color: #E1441C;
+      font-weight: 700;
+      white-space: nowrap;
+      background: rgba(225, 68, 28, 0.1);
+      padding: 3px 10px;
+      border-radius: 99px;
+      border: 1px solid rgba(225, 68, 28, 0.25);
+    }
+
+    .ind-body {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-top: 18px;
+    }
+
+    .ind-body h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      color: #FFFFFF;
+      line-height: 1.3;
+    }
+
+    .ind-body p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 14px;
+    }
+
+    .chip {
+      position: relative;
+      font-size: 11px;
+      font-weight: 600;
+      color: #C5C5C5;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: all .25s var(--ease);
+    }
+
+    .ind-card:hover .chip {
+      border-color: rgba(225, 68, 28, 0.3);
+      color: #FFFFFF;
+      background: rgba(225, 68, 28, 0.08);
+    }
+
+    .ind-body .btn-ghost {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px -24px 0;
+      padding: 14px 24px;
+      color: #E1441C;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.015);
+      margin-top: auto;
+      text-decoration: none;
+      transition: all .25s var(--ease);
+    }
+
+    .ind-body .btn-ghost svg {
+      width: 16px;
+      height: 16px;
+      stroke: #E1441C;
+      transition: transform .25s var(--ease);
+    }
+
+    .ind-card:hover .ind-body .btn-ghost {
+      background: rgba(225, 68, 28, 0.12);
+      color: #FFFFFF;
+    }
+
+    .ind-card:hover .ind-body .btn-ghost svg {
+      stroke: #FFFFFF;
+      transform: translateX(4px);
+    }
+
+    /* ============ WHY US v3 — radar-target feature cards ============ */
+    .why {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why .eyebrow {
+      color: var(--red);
+    }
+
+    .why .eyebrow::before {
+      background: var(--orange);
+    }
+
+    .why-list {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .why-item {
+      position: relative;
+      background: var(--surface-2);
+      border: 1px solid var(--line-dark);
+      padding: 28px 24px 26px;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+      overflow: hidden;
+    }
+
+    .why-item::before,
+    .why-item::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-color: rgba(249, 115, 22, 0);
+      transition: border-color .4s var(--ease);
+    }
+
+    .why-item::before {
+      top: 10px;
+      left: 10px;
+      border-top: 2px solid;
+      border-left: 2px solid;
+    }
+
+    .why-item::after {
+      bottom: 10px;
+      right: 10px;
+      border-bottom: 2px solid;
+      border-right: 2px solid;
+    }
+
+    .why-item:hover {
+      transform: translateY(-6px);
+      border-color: rgba(211, 47, 47, 0.35);
+      box-shadow: 0 24px 44px -22px rgba(211, 47, 47, .35);
+    }
+
+    .why-item:hover::before,
+    .why-item:hover::after {
+      border-color: rgba(249, 115, 22, 0.85);
+    }
+
+    .why-num {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .why-item .icwrap {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(211, 47, 47, 0.10);
+      border: 1px solid rgba(211, 47, 47, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .45s var(--ease), border-color .45s var(--ease);
+      margin-bottom: 20px;
+    }
+
+    .why-item .icwrap::before {
+      content: "";
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 1px dashed rgba(211, 47, 47, 0.28);
+      transition: border-color .4s var(--ease);
+      animation: ringspin 14s linear infinite;
+    }
+
+    .why-item:hover .icwrap {
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      border-color: transparent;
+    }
+
+    .why-item:hover .icwrap::before {
+      border-color: rgba(249, 115, 22, 0.55);
+    }
+
+    @keyframes ringspin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .why-item .icwrap svg {
+      width: 23px;
+      height: 23px;
+      stroke: var(--red);
+      transition: stroke .3s var(--ease);
+    }
+
+    .why-item:hover .icwrap svg {
+      stroke: #fff;
+    }
+
+    .why-item h4 {
+      font-size: 15.5px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      color: var(--text);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 11px;
+    }
+
+    .why-item h4::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 22px;
+      background: linear-gradient(90deg, var(--red), var(--orange));
+      transition: width .4s var(--ease);
+    }
+
+    .why-item:hover h4::after {
+      width: 100%;
+    }
+
+    .why-item p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.55;
+    }
+
+    @media(max-width:1080px) {
+      .why-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:640px) {
+      .why-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* mobile nav drawer */
+    .mobilenav {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.98);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      transform: translateY(-100%);
+      transition: transform .45s var(--ease);
+    }
+
+    .mobilenav.open {
+      transform: translateY(0);
+    }
+
+    .mobilenav a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #fff;
+    }
+
+    .mobilenav .close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: #fff;
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <!-- ICON SPRITE -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <symbol id="ic-shield" viewBox="0 0 48 48">
+        <path d="M24 4 8 10v13c0 11 7 18 16 21 9-3 16-10 16-21V10L24 4Z" />
+        <path d="M17 24l5 5 9-11" />
+      </symbol>
+      <symbol id="ic-menu" viewBox="0 0 48 48">
+        <path d="M8 14h32M8 24h32M8 34h32" />
+      </symbol>
+      <symbol id="ic-close" viewBox="0 0 48 48">
+        <path d="M12 12l24 24M36 12L12 36" />
+      </symbol>
+      <symbol id="ic-phone" viewBox="0 0 48 48">
+        <path d="M14 8c1 5 2.5 9 5 12l-4 5c3 6 8 11 14 14l5-4c3 2.5 7 4 12 5v6c-16 1-30-13-32-32V8Z" />
+      </symbol>
+      <symbol id="ic-arrow" viewBox="0 0 48 48">
+        <path d="M8 24h32M28 12l12 12-12 12" />
+      </symbol>
+      <symbol id="ic-factory" viewBox="0 0 48 48">
+        <path d="M6 40V22l10 7V22l10 7V14l10 7v3h6v16H6Z" />
+        <path d="M6 40h36" />
+      </symbol>
+      <symbol id="ic-flask" viewBox="0 0 48 48">
+        <path d="M19 6h10M20 6v12L9 36a4 4 0 003 6h24a4 4 0 003-6L28 18V6" />
+        <path d="M14 30h20" />
+      </symbol>
+      <symbol id="ic-truck" viewBox="0 0 48 48">
+        <path d="M4 12h22v20H4zM26 20h9l7 7v5h-16z" />
+        <circle cx="13" cy="36" r="4" />
+        <circle cx="35" cy="36" r="4" />
+      </symbol>
+      <symbol id="ic-building" viewBox="0 0 48 48">
+        <path d="M10 44V8h20v36M30 44V18h10v26M16 16h2M16 22h2M16 28h2M16 34h2M22 16h2M22 22h2M22 28h2M22 34h2" />
+      </symbol>
+      <symbol id="ic-bank" viewBox="0 0 48 48">
+        <path d="M6 18 24 6l18 12M8 18h32M10 18v18M18 18v18M30 18v18M38 18v18M4 40h40" />
+      </symbol>
+      <symbol id="ic-health" viewBox="0 0 48 48">
+        <path d="M24 6c11 0 18 7 18 18s-7 18-18 18S6 35 6 24 13 6 24 6Z" />
+        <path d="M24 16v16M16 24h16" />
+      </symbol>
+      <symbol id="ic-hotel" viewBox="0 0 48 48">
+        <path d="M6 42V10h14v32M20 20h22v22M20 42h22M14 16h.01M14 24h.01M14 32h.01M27 26h4M27 33h4" />
+      </symbol>
+      <symbol id="ic-retail" viewBox="0 0 48 48">
+        <path d="M10 16h28l-2 24H12L10 16Z" />
+        <path d="M17 16v-4a7 7 0 0114 0v4" />
+      </symbol>
+      <symbol id="ic-home" viewBox="0 0 48 48">
+        <path d="M8 22 24 8l16 14v18H8V22Z" />
+        <path d="M19 40V28h10v12" />
+      </symbol>
+      <symbol id="ic-education" viewBox="0 0 48 48">
+        <path d="M24 8 4 17l20 9 20-9-20-9Z" />
+        <path d="M12 22v10c0 3 6 7 12 7s12-4 12-7V22" />
+        <path d="M44 17v13" />
+      </symbol>
+      <symbol id="ic-construction" viewBox="0 0 48 48">
+        <path d="M6 42 26 22M26 22l6-6 6 6-6 6M22 18l8 8M8 40l4 4M40 12l-4-4-6 6-6-6" />
+      </symbol>
+      <symbol id="ic-government" viewBox="0 0 48 48">
+        <path d="M6 18 24 7l18 11M8 20v18M16 20v18M24 20v18M32 20v18M40 20v18M4 44h40M8 20h32" />
+      </symbol>
+      <symbol id="ic-badge" viewBox="0 0 48 48">
+        <circle cx="24" cy="18" r="10" />
+        <path d="M17 27 12 43l12-6 12 6-5-16" />
+      </symbol>
+      <symbol id="ic-clock" viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="18" />
+        <path d="M24 14v10l8 5" />
+      </symbol>
+      <symbol id="ic-check" viewBox="0 0 48 48">
+        <circle cx="24" cy="24" r="18" />
+        <path d="M16 24l6 6 12-12" />
+      </symbol>
+      <symbol id="ic-siren" viewBox="0 0 48 48">
+        <path d="M24 6a10 10 0 0110 10v20H14V16A10 10 0 0124 6Z" />
+        <path d="M6 36h36M24 6V3" />
+      </symbol>
+      <symbol id="ic-map" viewBox="0 0 48 48">
+        <path d="M16 8 6 12v28l10-4 16 4 10-4V8L32 12 16 8" />
+      </symbol>
+      <symbol id="ic-cpu" viewBox="0 0 48 48">
+        <rect x="14" y="14" width="20" height="20" rx="2" />
+        <path d="M20 14v-6M28 14v-6M20 40v-6M28 40v-6M14 20H8M14 28H8M40 20h-6M40 28h-6" />
+      </symbol>
+      <symbol id="ic-camera" viewBox="0 0 48 48">
+        <path d="M6 16h8l4-6h12l4 6h8v22H6V16Z" />
+        <circle cx="24" cy="27" r="7" />
+      </symbol>
+      <symbol id="ic-lock" viewBox="0 0 48 48">
+        <rect x="10" y="21" width="28" height="20" rx="3" />
+        <path d="M16 21v-6a8 8 0 0116 0v6" />
+      </symbol>
+      <symbol id="ic-fire" viewBox="0 0 48 48">
+        <path d="M24 4c2 8-8 10-8 20a8 8 0 0016 0c0-4-2-5-2-9 4 2 6 8 6 12a12 12 0 01-24 0Z" />
+      </symbol>
+      <symbol id="ic-rupee" viewBox="0 0 48 48">
+        <path d="M14 8h20M14 16h20M14 8c8 0 12 3 12 8s-4 8-12 8h-2l16 16" />
+      </symbol>
+      <symbol id="ic-sliders" viewBox="0 0 48 48">
+        <path d="M8 12h32M8 24h32M8 36h32" />
+        <circle cx="18" cy="12" r="3.5" />
+        <circle cx="32" cy="24" r="3.5" />
+        <circle cx="16" cy="36" r="3.5" />
+      </symbol>
+      <symbol id="ic-pin" viewBox="0 0 48 48">
+        <path d="M24 44S10 30 10 19a14 14 0 0128 0c0 11-14 25-14 25Z" />
+        <circle cx="24" cy="19" r="5" />
+      </symbol>
+      <symbol id="ic-mail" viewBox="0 0 48 48">
+        <rect x="6" y="10" width="36" height="28" rx="3" />
+        <path d="M6 13l18 14 18-14" />
+      </symbol>
+      <symbol id="ic-fb" viewBox="0 0 24 24">
+        <path d="M14 9h3V5h-3a5 5 0 00-5 5v2H7v4h2v7h4v-7h3l1-4h-4v-2a1 1 0 011-1Z" />
+      </symbol>
+      <symbol id="ic-ig" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" />
+      </symbol>
+      <symbol id="ic-li" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <circle cx="8" cy="8" r="1.6" />
+        <path d="M8 11v7M13 11v7M13 14c0-2 4-2 4 0v4" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar home-navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="Leopard Security Force">
+        <div class="brand-circle">
+          <img src="images/logo.png" alt="Leopard Shield Logo">
+        </div>
+        <div class="nav-logo-text">
+          <div class="brand-name">LEOPARD</div>
+          <div class="brand-sub">SECURITY FORCE</div>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="service.html">Service</a></li>
+        <li><a href="industries.html" class="active">Industries</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="career.html">Career</a></li>
+      </ul>
+
+      <a href="index.html#contact" class="nav-contact-cta">Contact Us</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="service.html">Service</a>
+    <a href="industries.html" class="active">Industries</a>
+    <a href="training.html">Training</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="index.html#contact">Contact Us</a>
+    <a href="career.html">Career</a>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-sweep"></div>
+    <div class="container">
+      <div class="hero-copy">
+        <span class="tag-lines"><span></span><span></span></span>
+        <span class="eyebrow">Pan-India Security Deployment</span>
+        <h1>Industries We <em>Protect</em></h1>
+        <p class="sub">Professional Security Solutions for Every Industry Across India</p>
+        <p>Leopard Security Force delivers highly trained security personnel and customised security solutions for
+          businesses, industries, institutions, residential communities, and government organisations — combining
+          professional manpower with modern security practices to safeguard people, property, and assets 24×7.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get Free Consultation</a>
+          <a href="#contact" class="btn btn-outline dark">Contact Us</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="radar-target">
+          <span class="radar-ring r1"></span>
+          <span class="radar-ring r2"></span>
+          <span class="radar-ring r3"></span>
+          <span class="radar-ring r4"></span>
+          <span class="radar-sweep"></span>
+          <span class="crosshair-h"></span>
+          <span class="crosshair-v"></span>
+          <span class="crosshair-core"></span>
+          <span class="blip b1"></span>
+          <span class="blip b2"></span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ CLIENTS ============ -->
+  <section class="clients pad-sm">
+    <div class="glow-lines">
+      <span class="glow-line l1"></span>
+      <span class="glow-line l2"></span>
+      <span class="glow-line l3"></span>
+      <span class="glow-line l4"></span>
+    </div>
+    <div class="container section-head center reveal">
+      <span class="tag-lines"><span></span><span></span></span>
+      <span class="eyebrow" style="justify-content:center;">Trusted Nationwide</span>
+      <h2>Trusted by Leading Organisations</h2>
+      <p>We proudly provide professional security services to companies and organisations from multiple industries
+        across India.</p>
+    </div>
+    <div class="client-marquee reveal">
+      <div class="client-track" id="clientTrack">
+        <div class="client-card"><span>Tata Motors</span></div>
+        <div class="client-card"><span>Berger Paints</span></div>
+        <div class="client-card"><span>Mahindra</span></div>
+        <div class="client-card"><span>Hotel Grand Rio</span></div>
+        <div class="client-card"><span>Reliance Industries</span></div>
+        <div class="client-card"><span>TKB</span></div>
+        <div class="client-card"><span>Adani Group</span></div>
+        <div class="client-card"><span>Zepto</span></div>
+        <div class="client-card"><span>L&amp;T</span></div>
+        <div class="client-card"><span>Tulsi Pipe</span></div>
+        <div class="client-card"><span>Infosys</span></div>
+        <div class="client-card"><span>Deepak Builders &amp; Developers</span></div>
+        <div class="client-card"><span>Wipro</span></div>
+        <div class="client-card"><span>Auto Data System</span></div>
+        <div class="client-card"><span>TCS</span></div>
+        <div class="client-card"><span>Krishna Industries</span></div>
+        <div class="client-card"><span>Amazon India</span></div>
+        <div class="client-card"><span>MG</span></div>
+        <div class="client-card"><span>Flipkart</span></div>
+        <div class="client-card"><span>PDB</span></div>
+      </div>
+    </div>
+    <div class="client-marquee client-marquee-reverse reveal">
+      <div class="client-track track-reverse" id="clientTrack2">
+        <div class="client-card"><span>DHL</span></div>
+        <div class="client-card"><span>Blue Dart</span></div>
+        <div class="client-card"><span>Siemens</span></div>
+        <div class="client-card"><span>Bosch</span></div>
+        <div class="client-card"><span>Godrej</span></div>
+        <div class="client-card"><span>CEAT</span></div>
+        <div class="client-card"><span>JK Tyre</span></div>
+        <div class="client-card"><span>Haldiram's</span></div>
+        <div class="client-card"><span>UltraTech Cement</span></div>
+        <div class="client-card"><span>Ambuja Cement</span></div>
+        <div class="client-card"><span>Cipla</span></div>
+        <div class="client-card"><span>Dr. Reddy's</span></div>
+        <div class="client-card"><span>Sun Pharma</span></div>
+        <div class="client-card"><span>Apollo Hospitals</span></div>
+        <div class="client-card"><span>Fortis</span></div>
+        <div class="client-card"><span>ITC</span></div>
+        <div class="client-card"><span>Taj Hotels</span></div>
+        <div class="client-card"><span>Radisson</span></div>
+        <div class="client-card"><span>Marriott</span></div>
+        <div class="client-card"><span>D-Mart</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INDUSTRIES ============ -->
+  <section class="industries pad" id="industries">
+    <div class="tactical-grid"></div>
+    <div class="radar-rings tr"></div>
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="tag-lines"><span></span><span></span></span>
+        <span class="eyebrow" style="justify-content:center;">What We Cover</span>
+        <h2>Industries We Serve</h2>
+        <p>From factory floors to boardrooms, from hospital wards to residential townships — Leopard Security Force
+          deploys sector-specific protocols for every environment. Each card below groups the specific industries we
+          actively protect.</p>
+      </div>
+
+      <div class="ind-grid">
+
+        <!-- 01 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">01</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-factory" />
+              </svg></span>
+            <span class="ind-num">SECTOR 01</span>
+          </div>
+          <div class="ind-body">
+            <h3>Heavy Manufacturing &amp; Engineering</h3>
+            <p>Gate discipline, material checking and round-the-clock patrolling for high-value industrial premises.</p>
+            <div class="chip-row">
+              <span class="chip">Manufacturing</span><span class="chip">Automobile</span><span
+                class="chip">Engineering</span><span class="chip">Factories</span><span class="chip">Industrial
+                Plants</span><span class="chip">Steel Plants</span><span class="chip">Textile</span><span
+                class="chip">Glass</span><span class="chip">Cement</span><span class="chip">Mining</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">02</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-flask" />
+              </svg></span>
+            <span class="ind-num">SECTOR 02</span>
+          </div>
+          <div class="ind-body">
+            <h3>Process, Pharma &amp; FMCG</h3>
+            <p>Contamination-sensitive access control and cold-chain protection for regulated production units.</p>
+            <div class="chip-row">
+              <span class="chip">Chemical Industries</span><span class="chip">Pharmaceutical</span><span
+                class="chip">Food Processing</span><span class="chip">FMCG</span><span class="chip">Cold
+                Storage</span><span class="chip">Agriculture Companies</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">03</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-truck" />
+              </svg></span>
+            <span class="ind-num">SECTOR 03</span>
+          </div>
+          <div class="ind-body">
+            <h3>Logistics, Warehousing &amp; Transport</h3>
+            <p>Dock security, truck verification and inventory protection across dispatch-heavy facilities.</p>
+            <div class="chip-row">
+              <span class="chip">Warehouses</span><span class="chip">Logistics &amp; Supply Chain</span><span
+                class="chip">Transport Companies</span><span class="chip">E-Commerce Warehouses</span><span
+                class="chip">Ports</span><span class="chip">Bus Depots</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">04</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-building" />
+              </svg></span>
+            <span class="ind-num">SECTOR 04</span>
+          </div>
+          <div class="ind-body">
+            <h3>Corporate, IT &amp; Media</h3>
+            <p>Reception-first, visitor-managed security built for glass towers and always-on campuses.</p>
+            <div class="chip-row">
+              <span class="chip">Corporate Offices</span><span class="chip">IT Companies</span><span
+                class="chip">Software Parks</span><span class="chip">Data Centers</span><span class="chip">Media
+                Houses</span><span class="chip">Telecom Towers</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">05</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-bank" />
+              </svg></span>
+            <span class="ind-num">SECTOR 05</span>
+          </div>
+          <div class="ind-body">
+            <h3>Banking &amp; Financial Institutions</h3>
+            <p>Cash-in-transit discipline and armed/unarmed guarding for high-security financial premises.</p>
+            <div class="chip-row">
+              <span class="chip">Banks</span><span class="chip">ATMs</span><span class="chip">Financial
+                Institutions</span><span class="chip">Insurance Companies</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 06 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">06</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-health" />
+              </svg></span>
+            <span class="ind-num">SECTOR 06</span>
+          </div>
+          <div class="ind-body">
+            <h3>Healthcare &amp; Life Sciences</h3>
+            <p>Patient-safety focused deployment with calm, trained handling of emergencies and crowds.</p>
+            <div class="chip-row">
+              <span class="chip">Hospitals</span><span class="chip">Medical Colleges</span><span class="chip">Healthcare
+                Centers</span><span class="chip">Diagnostic Labs</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 07 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">07</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-hotel" />
+              </svg></span>
+            <span class="ind-num">SECTOR 07</span>
+          </div>
+          <div class="ind-body">
+            <h3>Hospitality &amp; Events</h3>
+            <p>Guest-first lobby presence, VIP protection and event-day crowd management.</p>
+            <div class="chip-row">
+              <span class="chip">Hotels</span><span class="chip">Resorts</span><span
+                class="chip">Restaurants</span><span class="chip">Marriage Lawns</span><span class="chip">Event
+                Management</span><span class="chip">Exhibition Centers</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 08 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">08</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-retail" />
+              </svg></span>
+            <span class="ind-num">SECTOR 08</span>
+          </div>
+          <div class="ind-body">
+            <h3>Retail &amp; Commercial Spaces</h3>
+            <p>Loss-prevention aware guarding for high-footfall malls, stores and commercial complexes.</p>
+            <div class="chip-row">
+              <span class="chip">Shopping Malls</span><span class="chip">Retail Stores</span><span
+                class="chip">Supermarkets</span><span class="chip">Commercial Complexes</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 09 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">09</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-home" />
+              </svg></span>
+            <span class="ind-num">SECTOR 09</span>
+          </div>
+          <div class="ind-body">
+            <h3>Residential &amp; Private Estates</h3>
+            <p>Gated-community protocols, visitor logging and night patrolling for premium living spaces.</p>
+            <div class="chip-row">
+              <span class="chip">Residential Societies</span><span class="chip">Luxury Apartments</span><span
+                class="chip">Townships</span><span class="chip">High-rise Buildings</span><span class="chip">Luxury
+                Villas</span><span class="chip">Private Estates</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">10</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-education" />
+              </svg></span>
+            <span class="ind-num">SECTOR 10</span>
+          </div>
+          <div class="ind-body">
+            <h3>Education &amp; Research</h3>
+            <p>Child-safe entry protocols and campus patrolling across schools, colleges and research campuses.</p>
+            <div class="chip-row">
+              <span class="chip">Schools</span><span class="chip">Colleges</span><span
+                class="chip">Universities</span><span class="chip">Coaching Institutes</span><span class="chip">Research
+                Centers</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">11</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-construction" />
+              </svg></span>
+            <span class="ind-num">SECTOR 11</span>
+          </div>
+          <div class="ind-body">
+            <h3>Construction &amp; Infrastructure</h3>
+            <p>Site-material protection and worker entry control across live construction and transit projects.</p>
+            <div class="chip-row">
+              <span class="chip">Construction Sites</span><span class="chip">Builders &amp; Developers</span><span
+                class="chip">Infrastructure Projects</span><span class="chip">Airports</span><span class="chip">Railway
+                Stations</span><span class="chip">Metro Projects</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="ind-card reveal">
+          <span class="ind-watermark">12</span>
+          <div class="ind-top">
+            <span class="ind-icon"><svg class="ic" viewBox="0 0 48 48">
+                <use href="#ic-government" />
+              </svg></span>
+            <span class="ind-num">SECTOR 12</span>
+          </div>
+          <div class="ind-body">
+            <h3>Government, Energy &amp; Special Sectors</h3>
+            <p>Protocol-driven security for public infrastructure, energy assets and sensitive establishments.</p>
+            <div class="chip-row">
+              <span class="chip">Government Offices</span><span class="chip">PSUs</span><span
+                class="chip">SEZs</span><span class="chip">Industrial Parks</span><span class="chip">Power
+                Plants</span><span class="chip">Solar Plants</span><span class="chip">Wind Energy</span><span
+                class="chip">Oil &amp; Gas</span><span class="chip">Petrol Pumps</span><span class="chip">Religious
+                Places</span><span class="chip">NGOs</span><span class="chip">Defense Contractors</span>
+            </div>
+            <a href="#contact" class="btn-ghost">View Sector Details <svg viewBox="0 0 48 48">
+                <use href="#ic-arrow" />
+              </svg></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section class="why pad" id="why">
+    <div class="tactical-grid"></div>
+    <div class="radar-rings bl"></div>
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="tag-lines"><span></span><span></span></span>
+        <span class="eyebrow" style="justify-content:center;">The Leopard Standard</span>
+        <h2>Why Choose Leopard Security Force</h2>
+        <p>A disciplined field force backed by modern monitoring technology — built to be dependable in the moments that
+          matter.</p>
+      </div>
+      <div class="why-list reveal">
+        <div class="why-item"><span class="why-num">01</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-badge" />
+            </svg></span>
+          <div>
+            <h4>Professional Guards</h4>
+            <p>Trained, uniformed and disciplined field personnel.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">02</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-clock" />
+            </svg></span>
+          <div>
+            <h4>24×7 Protection</h4>
+            <p>Round-the-clock shift coverage, every day of the year.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">03</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-check" />
+            </svg></span>
+          <div>
+            <h4>Verified Personnel</h4>
+            <p>Background-checked guards for every deployment.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">04</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-siren" />
+            </svg></span>
+          <div>
+            <h4>Quick Response Team</h4>
+            <p>Rapid mobile backup for on-ground emergencies.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">05</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-map" />
+            </svg></span>
+          <div>
+            <h4>GPS Patrolling</h4>
+            <p>Route-tracked patrols with verified checkpoints.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">06</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-cpu" />
+            </svg></span>
+          <div>
+            <h4>Technology Enabled</h4>
+            <p>Digital reporting and real-time supervision tools.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">07</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-camera" />
+            </svg></span>
+          <div>
+            <h4>CCTV Monitoring</h4>
+            <p>Camera-backed oversight layered on manual guarding.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">08</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-lock" />
+            </svg></span>
+          <div>
+            <h4>Access Control</h4>
+            <p>Controlled entry and exit for people and vehicles.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">09</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-fire" />
+            </svg></span>
+          <div>
+            <h4>Fire Safety Assistance</h4>
+            <p>Trained fire-watch support alongside security duty.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">10</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-rupee" />
+            </svg></span>
+          <div>
+            <h4>Affordable Pricing</h4>
+            <p>Transparent, competitive rates for every scale.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">11</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-pin" />
+            </svg></span>
+          <div>
+            <h4>Pan India Services</h4>
+            <p>Deployment capability across Indian cities and states.</p>
+          </div>
+        </div>
+        <div class="why-item"><span class="why-num">12</span><span class="icwrap"><svg class="ic" viewBox="0 0 48 48">
+              <use href="#ic-sliders" />
+            </svg></span>
+          <div>
+            <h4>Customised Plans</h4>
+            <p>Security plans built around your site's real risk profile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process pad" id="process">
+    <div class="tactical-grid"></div>
+    <div class="radar-rings tr"></div>
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="tag-lines"><span></span><span></span></span>
+        <span class="eyebrow" style="justify-content:center;">How We Work</span>
+        <h2>Our Security Process</h2>
+        <p>A structured six-step method, followed in order, from first site visit to ongoing refinement.</p>
+      </div>
+      <div class="timeline reveal" id="timeline">
+        <div class="tl-step"><span class="tl-num">01</span><span class="tl-tag">Step 01</span>
+          <h4>Site Inspection</h4>
+          <p>On-ground assessment of the premises.</p>
+        </div>
+        <div class="tl-step"><span class="tl-num">02</span><span class="tl-tag">Step 02</span>
+          <h4>Risk Assessment</h4>
+          <p>Identify vulnerabilities and threat points.</p>
+        </div>
+        <div class="tl-step"><span class="tl-num">03</span><span class="tl-tag">Step 03</span>
+          <h4>Security Planning</h4>
+          <p>Design a tailored deployment strategy.</p>
+        </div>
+        <div class="tl-step"><span class="tl-num">04</span><span class="tl-tag">Step 04</span>
+          <h4>Deployment</h4>
+          <p>Trained guards placed on active duty.</p>
+        </div>
+        <div class="tl-step"><span class="tl-num">05</span><span class="tl-tag">Step 05</span>
+          <h4>Monitoring</h4>
+          <p>Supervised patrols and live oversight.</p>
+        </div>
+        <div class="tl-step"><span class="tl-num">06</span><span class="tl-tag">Step 06</span>
+          <h4>Continuous Improvement</h4>
+          <p>Regular review and protocol refinement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-logo-panel">
+            <img src="images/logo.png" alt="Leopard Security Force Logo"
+              style="width: 56px; height: 56px; object-fit: contain;">
+            <div class="footer-logo-text">
+              <span>LEOPARD</span> SECURITY FORCE
+            </div>
+          </div>
+          <p class="footer-description">
+            India's trusted private security agency delivering world-class protection solutions since 2019. Your safety,
+            our responsibility.
+          </p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1DNwx6XEmj/" target="_blank" class="social-icon"
+              aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/leosecforce2019?utm_source=qr&amp;igsh=MTRhYWx6dDUzMm91aA=="
+              target="_blank" class="social-icon" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" target="_blank" class="social-icon" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mahajan-s-d-595b53104?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android"
+              target="_blank" class="social-icon" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://x.com/LEOSECFORCE2019" target="_blank" class="social-icon" aria-label="X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col footer-links-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="industries.html">Industries</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="career.html">Career</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact-col">
+          <h4 class="footer-heading">Get in Touch</h4>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+            <p>Deeplaxmi Apartment, near Hotel Seven Heaven, Chetana Nagar, Rane Nagar, Nashik, Maharashtra 422009</p>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></span>
+            <p><a href="mailto:leosecforce2019@gmail.com">leosecforce2019@gmail.com</a></p>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon"><i class="fa-solid fa-phone"></i></span>
+            <div>
+              <p class="contact-label">Mahajan S. D.</p>
+              <p><a href="tel:+918657260511">+91 86572 60511</a></p>
+              <p><a href="tel:+919226671538">+91 92266 71538</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-col footer-newsletter-col">
+          <h4 class="footer-heading">Stay Ignited</h4>
+          <p class="newsletter-text">
+            Subscribe to receive updates about our security services, professional protection solutions, trained
+            security personnel, and latest company updates.
+          </p>
+          <form class="footer-newsletter" id="footerSubscribeForm">
+            <input type="tel" id="footerMobileNumber" placeholder="Your mobile number" maxlength="10"
+              pattern="[6-9][0-9]{9}" inputmode="numeric" required>
+            <button type="submit">SUBSCRIBE</button>
+          </form>
+          <div class="footer-success" id="footerSuccessMessage">Thank you for subscribing! We will keep you updated with
+            the latest from Leopard Security Force.</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Leopard Security Force. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="career.html">Careers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Industry cards reveal (added dynamically since not all have .reveal class by default)
+    document.querySelectorAll('.ind-card, .why-item').forEach(el => {
+      el.classList.add('reveal');
+    });
+
+    // Timeline step reveal
+    const timeline = document.getElementById('timeline');
+    if (timeline) {
+      const tlSteps = document.querySelectorAll('.tl-step');
+      const tlObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tlSteps.forEach((s, i) => setTimeout(() => s.classList.add('on'), i * 180));
+            tlObserver.unobserve(timeline);
+          }
+        });
+      }, { threshold: 0.3 });
+      tlObserver.observe(timeline);
+    }
+
+    // Duplicate client track for seamless marquee
+    const track = document.getElementById('clientTrack');
+    if (track) track.innerHTML += track.innerHTML;
+    const track2 = document.getElementById('clientTrack2');
+    if (track2) track2.innerHTML += track2.innerHTML;
+  </script>
+  <script src="script.js"></script>
+  <script src="tracker.js"></script>
+
+</body>
+
+</html>

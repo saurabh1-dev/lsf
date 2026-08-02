@@ -1,0 +1,235 @@
+/* ============================================================
+   GLOWING RED NEON TIMELINE STYLES
+   ============================================================ */
+
+/* Main wrapping section */
+.timeline-section {
+    width: 100%;
+    position: relative;
+    background-color: #000000;
+    /* Pure black background */
+    overflow: hidden;
+    padding: 80px 20px;
+}
+
+/* Vignette / Radial dark red glows in the corners to create neon ambient lighting */
+.timeline-section::before,
+.timeline-section::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(229, 52, 42, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.timeline-section::before {
+    top: -200px;
+    left: -200px;
+}
+
+.timeline-section::after {
+    bottom: -200px;
+    right: -200px;
+}
+
+/* Timeline Layout Container */
+.timeline-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 0;
+    z-index: 2;
+}
+
+/* Glowing vertical connecting line */
+.timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom,
+            rgba(229, 52, 42, 0.05) 0%,
+            rgba(229, 52, 42, 0.8) 15%,
+            rgba(229, 52, 42, 0.8) 85%,
+            rgba(229, 52, 42, 0.05) 100%);
+    box-shadow: 0 0 12px rgba(229, 52, 42, 0.4);
+    border-radius: 99px;
+}
+
+/* Vertical items stack */
+.timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Individual timeline item wrapper */
+.timeline-item {
+    position: relative;
+    padding-left: 55px;
+    /* Offset to clear the vertical line */
+    width: 100%;
+}
+
+/* Interactive connecting dot aligned with card badge top */
+.timeline-dot {
+    position: absolute;
+    left: 12px;
+    top: 36px;
+    /* Centered relative to the card's top area */
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background-color: #000000;
+    border: 3px solid #e5342a;
+    box-shadow: 0 0 12px rgba(229, 52, 42, 0.7);
+    z-index: 3;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        background-color 0.25s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    background-color: #e5342a;
+    transform: scale(1.3);
+}
+
+/* Event Glowing Card */
+.timeline-card {
+    background-color: #0a0a0a;
+    /* Near-black background, fully opaque */
+    border: 2px solid #e5342a;
+    /* 2px solid red */
+    border-radius: 18px;
+    /* Fully rounded corners between 16-20px */
+    padding: 24px;
+    /* Generous inner padding */
+    box-shadow: 0 0 20px rgba(229, 52, 42, 0.4);
+    /* Soft red box shadow outer glow */
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    /* Responsive, capped width */
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+        box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+        border-color 0.3s ease;
+}
+
+.timeline-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 28px rgba(229, 52, 42, 0.7);
+    /* Brighter hover glow */
+    border-color: #ff554c;
+    /* Slightly brighter red border highlight */
+}
+
+/* Card Badge (Time) */
+.timeline-badge {
+    display: inline-block;
+    background-color: #e5342a;
+    /* Solid red background */
+    color: #ffffff;
+    /* White text */
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    padding: 6px 14px;
+    /* Small padding */
+    border-radius: 999px;
+    /* Fully rounded */
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    /* Spacing below badge */
+    box-shadow: 0 2px 8px rgba(229, 52, 42, 0.3);
+}
+
+/* Large Bold Card Title */
+.timeline-title {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 800;
+    /* Heavy weight */
+    font-size: 1.45rem;
+    color: #ffffff;
+    /* Bold white */
+    text-transform: uppercase;
+    /* Uppercase */
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin: 0 0 10px 0;
+}
+
+/* Card Subtitle / Description */
+.timeline-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    /* Light gray */
+    font-weight: 400;
+    margin: 0 0 22px 0;
+    /* Margin bottom before divider */
+    line-height: 1.6;
+}
+
+/* Bottom Horizontal Divider / Progress Bar */
+.timeline-divider {
+    height: 5px;
+    /* Thin 4-6px height */
+    width: 90%;
+    /* Spans most of the card width */
+    margin: 0 auto;
+    background-color: #e5342a;
+    /* Solid red */
+    border-radius: 99px;
+    /* Rounded ends */
+    box-shadow: 0 1px 4px rgba(229, 52, 42, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Optional hover shine animation on the bottom divider */
+.timeline-divider::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transition: width 0.4s ease;
+}
+
+.timeline-card:hover .timeline-divider::after {
+    width: 100%;
+    animation: shine-bar 1.5s infinite;
+}
+
+@keyframes shine-bar {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Base Responsive Breakpoint Adaptions */
+@media (max-width: 480px) {
+    .timeline-container {
+        max-width: 100%;
+        padding: 10px 5px;
+    }
+
+    .timeline-card {
+        padding: 20px;
+    }
+
+    .timeline-title {
+        font-size: 1.25rem;
+    }
+}

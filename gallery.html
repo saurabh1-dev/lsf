@@ -1,0 +1,960 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Leopard Security Force</title>
+  <meta name="description"
+    content="Explore our training academy, drill operations, static guarding exercises, VIP bodyguard details, and remote command team in action.">
+  <meta name="keywords"
+    content="security gallery, defense operations, guard training, bodyguard photos, security command, cash van guard, India">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tracker.css">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --surface: #161616;
+      --surface-2: #212121;
+      --border: #333333;
+      --text-dim: #949494;
+      --amber: #F97316;
+      --red: #F97316;
+      --font-display: 'Poppins', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+      --font-mono: 'Poppins', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    ::selection {
+      background: var(--amber);
+      color: #0a0a0a;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 3px;
+    }
+
+    .archive-hero {
+      padding: 110px 6vw 48px;
+      text-align: center;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    .archive-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(58px, 8vw, 96px);
+      margin: 0 auto 18px;
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      max-width: 820px;
+    }
+
+    .archive-hero .sub {
+      max-width: 760px;
+      margin: 0 auto;
+      color: #b3b3b3;
+      line-height: 1.9;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+
+    .archive-grid-section {
+      padding: 0 0 100px;
+      background: transparent;
+    }
+
+    .tile {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: rise .5s ease forwards;
+    }
+
+    .tile[data-type="video"] .play-btn {
+      display: flex;
+    }
+
+    .tile .play-btn {
+      display: none;
+    }
+
+    .tile video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+
+    .archive-grid-section .empty {
+      display: none;
+      text-align: center;
+      padding: 90px 20px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .filterbar {
+      position: relative;
+      z-index: 10;
+      background: #090a0c;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 18px 20px;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filterbar-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .filter-btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-btn i {
+      font-size: 13px;
+      opacity: 0.75;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      color: #ffffff;
+      background: rgba(249, 115, 22, 0.12);
+      border-color: rgba(249, 115, 22, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .filter-btn:hover i {
+      opacity: 1;
+    }
+
+    .filter-btn.active {
+      background: #F97316;
+      color: #ffffff !important;
+      border-color: #F97316;
+      box-shadow: 0 4px 18px rgba(249, 115, 22, 0.35);
+      font-weight: 700;
+    }
+
+    .filter-btn.active i {
+      opacity: 1;
+    }
+
+
+
+    .filter-count {
+      display: none;
+    }
+
+    .filter-count {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-dim);
+    }
+
+    .grid {
+      padding: 40px 6vw 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .tile {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: rise .5s ease forwards;
+    }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.92) contrast(1.03);
+      transition: transform .5s ease, filter .5s ease;
+    }
+
+    .tile:hover img {
+      transform: scale(1.045);
+      filter: saturate(1) contrast(1.06);
+    }
+
+    .tile::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -100%;
+      height: 40%;
+      background: linear-gradient(180deg, rgba(242, 169, 59, 0) 0%, rgba(242, 169, 59, 0.08) 50%, rgba(242, 169, 59, 0) 100%);
+      transition: top .6s ease;
+      pointer-events: none;
+    }
+
+    .tile:hover::after {
+      top: 130%;
+    }
+
+    .tag-top {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(20, 23, 26, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-dim);
+      padding: 4px 8px;
+      border-radius: 2px;
+    }
+
+    .tag-top.video {
+      color: #f0c9c4;
+    }
+
+    .tag-top .rec-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(20, 23, 26, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s ease, transform .15s ease;
+    }
+
+    .tile:hover .play-btn {
+      background: rgba(242, 169, 59, 0.85);
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+
+    .play-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: #fff;
+    }
+
+    .tile:hover .play-btn svg {
+      fill: #0a0a0a;
+    }
+
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 90px 20px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 12, 13, 0.96);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 5vh 4vw;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lb-inner {
+      max-width: 1000px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lb-media {
+      position: relative;
+      background: #000;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 72vh;
+      overflow: hidden;
+    }
+
+    .lb-media img,
+    .lb-media video {
+      max-width: 100%;
+      max-height: 72vh;
+      width: auto;
+      display: block;
+    }
+
+    .lb-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 16px 4px 0;
+      flex-wrap: wrap;
+    }
+
+    .lb-caption .title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .lb-caption .stamp {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .lb-caption .stamp b {
+      color: var(--amber);
+      font-weight: 500;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 22px;
+      right: 4vw;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lb-close:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(28, 33, 37, 0.8);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .lb-nav:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .lb-prev {
+      left: 2vw;
+    }
+
+    .lb-next {
+      right: 2vw;
+    }
+
+    @media (max-width: 640px) {
+      .lb-nav {
+        width: 36px;
+        height: 36px;
+      }
+
+      .lb-prev {
+        left: 2vw;
+      }
+
+      .lb-next {
+        right: 2vw;
+      }
+
+      .filterbar {
+        padding: 14px 5vw;
+      }
+
+      .grid {
+        padding: 28px 5vw 70px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar home-navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="Leopard Security Force">
+        <div class="brand-circle">
+          <img src="images/logo.png" alt="Leopard Shield Logo">
+        </div>
+        <div class="nav-logo-text">
+          <div class="brand-name">LEOPARD</div>
+          <div class="brand-sub">SECURITY FORCE</div>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="service.html">Service</a></li>
+        <li><a href="industries.html">Industries</a></li>
+        <li><a href="training.html">Training</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="career.html">Career</a></li>
+      </ul>
+
+      <a href="index.html#contact" class="nav-contact-cta">Contact Us</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="service.html">Service</a>
+    <a href="industries.html">Industries</a>
+    <a href="training.html">Training</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="index.html#contact">Contact Us</a>
+    <a href="career.html">Career</a>
+  </div>
+
+  <!-- ========== ARCHIVE HERO ========== -->
+  <section class="archive-hero">
+    <div class="container">
+      <p class="eyebrow"><span class="dot"></span> FIELD ARCHIVE — RESTRICTED ACCESS PREVIEW</p>
+      <h1>SENTINEL GROUP<br>OPERATIONS GALLERY</h1>
+      <p class="sub">A running record of field deployments, site coverage and response drills across active contracts.
+        Photos and videos pulled directly from operations logs.</p>
+    </div>
+  </section>
+
+  <section class="filterbar" aria-label="Gallery filters">
+    <div class="filterbar-inner">
+      <button type="button" class="filter-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i>
+        ALL</button>
+      <button type="button" class="filter-btn" data-filter="photo"><i class="fa-solid fa-camera"></i> PHOTOS</button>
+      <button type="button" class="filter-btn" data-filter="video"><i class="fa-solid fa-video"></i> VIDEOS</button>
+    </div>
+  </section>
+
+  <section class="archive-grid-section">
+    <div class="container">
+      <div class="grid" id="galleryGrid"></div>
+      <div class="empty" id="emptyState">No media matches this filter.</div>
+    </div>
+  </section>
+
+  <!-- ========== LIGHTBOX MODAL ========== -->
+  <div class="lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Media preview">
+    <div class="lb-inner">
+      <button class="lb-close" id="lightboxClose" aria-label="Close preview">×</button>
+      <div class="lb-media" id="lbMedia"></div>
+      <div class="lb-caption">
+        <div class="title" id="lbTitle"></div>
+        <div class="stamp" id="lbStamp"></div>
+      </div>
+      <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous media"><i
+          class="fa-solid fa-chevron-left"></i></button>
+      <button class="lb-nav lb-next" id="lbNext" aria-label="Next media"><i
+          class="fa-solid fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <!-- Space Divider -->
+  <div class="space-divider" aria-hidden="true">
+    <div class="divider-line"></div>
+    <span class="glow-dot"></span>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="contact">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <div class="footer-logo-panel">
+            <img src="images/logo.png" alt="Leopard Security Force Logo"
+              style="width: 56px; height: 56px; object-fit: contain;">
+            <div class="footer-logo-text">
+              <span>LEOPARD</span> SECURITY FORCE
+            </div>
+          </div>
+          <p class="footer-description">
+            India's trusted private security agency delivering world-class protection solutions since 2019. Your safety,
+            our responsibility.
+          </p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1DNwx6XEmj/" target="_blank" class="social-icon"
+              aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/leosecforce2019?utm_source=qr&amp;igsh=MTRhYWx6dDUzMm91aA=="
+              target="_blank" class="social-icon" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" target="_blank" class="social-icon" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/mahajan-s-d-595b53104?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android"
+              target="_blank" class="social-icon" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://x.com/LEOSECFORCE2019" target="_blank" class="social-icon" aria-label="X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col footer-links-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="industries.html">Industries</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="career.html">Career</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact-col">
+          <h4 class="footer-heading">Get in Touch</h4>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+            <p>Deeplaxmi Apartment, near Hotel Seven Heaven, Chetana Nagar, Rane Nagar, Nashik, Maharashtra 422009</p>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></span>
+            <p><a href="mailto:leosecforce2019@gmail.com">leosecforce2019@gmail.com</a></p>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon"><i class="fa-solid fa-phone"></i></span>
+            <div>
+              <p class="contact-label">Mahajan S. D.</p>
+              <p><a href="tel:+918657260511">+91 86572 60511</a></p>
+              <p><a href="tel:+919226671538">+91 92266 71538</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-col footer-newsletter-col">
+          <h4 class="footer-heading">Stay Ignited</h4>
+          <p class="newsletter-text">
+            Subscribe to receive updates about our security services, professional protection solutions, trained
+            security personnel, and latest company updates.
+          </p>
+          <form class="footer-newsletter" id="footerSubscribeForm">
+            <input type="tel" id="footerMobileNumber" placeholder="Your mobile number" maxlength="10"
+              pattern="[6-9][0-9]{9}" inputmode="numeric" required>
+            <button type="submit">SUBSCRIBE</button>
+          </form>
+          <div class="footer-success" id="footerSuccessMessage">Thank you for subscribing! We will keep you updated with
+            the latest from Leopard Security Force.</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Leopard Security Force. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="career.html">Careers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+
+  <!-- ========== FLOATING CTA & AI WIDGETS ========== -->
+  <div id="lsf-left-floaters">
+    <!-- Call Floater -->
+    <a href="tel:+918657260511" class="lsf-floater lsf-floater-call" aria-label="Call Helpline" title="Call Us Now">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path
+          d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.12.45 2.33.69 3.58.69a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.24 2.46.69 3.58a1 1 0 01-.27 1.11z" />
+      </svg>
+    </a>
+    <!-- WhatsApp Floater -->
+    <a href="https://wa.me/918657260511" target="_blank" class="lsf-floater lsf-floater-wa" aria-label="WhatsApp Us"
+      title="WhatsApp Us">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M12.01 2.01c-5.5 0-9.96 4.43-9.96 9.92 0 1.76.46 3.48 1.33 4.99L2.01 22l5.24-1.35a9.85 9.85 0 004.75 1.21c5.51 0 9.97-4.44 9.97-9.93 0-5.49-4.46-9.92-9.96-9.92zm5.72 13.91c-.24.67-1.22 1.24-1.68 1.32-.46.08-.94.13-2.93-.65-2.55-1-4.17-3.56-4.3-3.73-.12-.17-1.04-1.36-1.04-2.59 0-1.23.65-1.84.88-2.09.23-.25.5-.32.67-.32h.48c.16 0 .37-.06.58.42.22.52.75 1.8.81 1.93.07.13.11.28.02.45-.09.17-.14.28-.27.42-.14.15-.29.33-.42.47-.14.15-.3.32-.13.6.17.3 1 1.63 2.14 2.63 1.15.99 2.11 1.3 2.4 1.43.3.13.47.1.65-.1.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.16.29.11 1.83.84 2.14.99.31.15.52.23.6.35.07.13.07-.72-.17 1.39z" />
+      </svg>
+    </a>
+  </div>
+
+  <div id="lsf-right-floaters" class="widget-container">
+    <!-- AI Assistant Symbol -->
+    <button type="button" class="lsf-floater lsf-floater-ai" id="lsfAiBtn" aria-label="AI HELP" title="AI HELP">
+      <span class="ai-btn-icon"><i class="fa-solid fa-shield-halved"></i></span>
+      <span class="ai-btn-label">AI HELP</span>
+    </button>
+    <!-- Chat Window -->
+    <div class="lsf-chat-window" id="lsfChatWindow">
+      <div class="lsf-chat-header">
+        <div class="lsf-chat-header-info">
+          <span class="lsf-online-indicator"></span>
+          <div>
+            <h4>Leo</h4>
+            <p>Security Agent AI</p>
+          </div>
+        </div>
+        <button class="lsf-chat-close" id="lsfChatClose" aria-label="Close Chat">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="lsf-chat-messages" id="lsfChatMessages">
+        <div class="lsf-chat-msg bot">
+          <div class="lsf-msg-bubble">
+            Hi I am Leo, your virtual security coordinator. How can I protect you today? Please choose an option or type
+            your request below.
+          </div>
+        </div>
+        <div class="lsf-chat-options" id="lsfChatOptions">
+          <button class="lsf-chat-opt" data-action="quote">Get Instant Quote</button>
+          <button class="lsf-chat-opt" data-action="armed">Armed Security Info</button>
+          <button class="lsf-chat-opt" data-action="emergency">Emergency Hotline</button>
+          <button class="lsf-chat-opt" data-action="service">Standard Services</button>
+        </div>
+      </div>
+      <form class="lsf-chat-input-bar" id="lsfChatInputForm">
+        <input type="text" id="lsfChatInput" placeholder="Ask anything in English..." autocomplete="off">
+        <button type="submit" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="tracker.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const imageFiles = [
+        '27.png', '29.png', '31.png', '33.jpg', '33.png', '37.png', '39.png', '42.jpg', '45.png', '47.png', '48.png', '50.jpg', '51.png',
+        'a1.png', 'a10.png', 'a11.png', 'a12.png', 'a13.png', 'a14.png', 'a15.png', 'a16.png', 'a17.jpg', 'a18.png', 'a19.png', 'a2.png', 'a20.jpg', 'a21.png', 'a22.png', 'a23.jpg', 'a24.png', 'a27.png', 'a28.png', 'a29.png', 'a3.png', 'a4.png', 'a5.png', 'a6.png', 'a7.png', 'a8.png', 'a9.png',
+        'b1.jpeg', 'b2.jpeg', 'b3.jpeg', 'b4.jpeg', 'b5.jpeg', 'b6.jpeg', 'b7.jpeg', 'b8.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.47.57.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.47.58 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.47.58.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.47.59 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.47.59 (2).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.47.59.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.00 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.00.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.01 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.01 (2).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.01.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.02 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.02.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.03 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.03.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.04 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.04 (2).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.04.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.05 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.05 (2).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.05.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.06 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.06.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.07 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.07 (2).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.07.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.08 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.08 (2).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.08.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.09 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.09.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.10 (1).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.10 (2).jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.10.jpeg',
+        'WhatsApp Image 2026-07-22 at 19.48.11.jpeg'
+      ];
+
+      const videoFiles = [
+        'WhatsApp Video 2026-07-22 at 19.47.57.mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.02.mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.48 (1).mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.48.mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.49 (1).mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.49.mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.50 (1).mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.50 (2).mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.50.mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.51 (2).mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.51.mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.52.mp4',
+        'WhatsApp Video 2026-07-22 at 19.48.53 (1).mp4',
+        'WhatsApp Video 2026-07-26 at 13.28.14 - Trim.mp4'
+      ];
+
+      const formatTitle = (filename) => {
+        const noExt = filename.replace(/\.[^/.]+$/, '');
+        const cleaned = noExt
+          .replace(/^WhatsApp (Image|Video) /i, '')
+          .replace(/\s*\(.*?\)/g, '')
+          .replace(/[-_]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+
+        const isNumeric = /^\d+$/.test(cleaned);
+        const isCode = /^[a-zA-Z]\d+$/.test(cleaned);
+        const isTimestamp = /\d{4}\s\d{2}\s\d{2}/.test(cleaned);
+
+        if (isNumeric || isCode || isTimestamp || !cleaned) {
+          return 'LSF Operations';
+        }
+        return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+      };
+
+      const createItems = () => {
+        const images = imageFiles.map((name) => ({
+          src: `images/${name}`,
+          type: 'image',
+          title: formatTitle(name),
+          caption: 'Field archive image'
+        }));
+
+        const videos = videoFiles.map((name) => ({
+          src: `images/${name}`,
+          type: 'video',
+          title: formatTitle(name),
+          caption: 'Field archive video'
+        }));
+
+        return [...images, ...videos];
+      };
+
+      const galleryGrid = document.getElementById('galleryGrid');
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const emptyState = document.getElementById('emptyState');
+      const lightbox = document.getElementById('galleryLightbox');
+      const lbMedia = document.getElementById('lbMedia');
+      const lbTitle = document.getElementById('lbTitle');
+      const lbStamp = document.getElementById('lbStamp');
+      const lbClose = document.getElementById('lightboxClose');
+      const lbPrev = document.getElementById('lbPrev');
+      const lbNext = document.getElementById('lbNext');
+
+      let currentItems = [];
+      let activeIndex = 0;
+      const galleryItems = createItems();
+
+      const renderTile = (item, index) => {
+        const overlayLabel = item.type === 'video'
+          ? '<div class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>'
+          : '';
+
+        return `
+          <article class="tile" data-index="${index}" data-type="${item.type}">
+            ${item.type === 'image'
+            ? `<img src="${item.src}" loading="lazy" alt="${item.title}">`
+            : `<video src="${item.src}" muted preload="metadata" aria-label="${item.title}"></video>`}
+            ${overlayLabel}
+          </article>
+        `;
+      };
+
+      const updateFilterCount = () => {
+        return;
+      };
+
+      const openLightbox = (index) => {
+        activeIndex = index;
+        const item = currentItems[index];
+        if (!item) return;
+
+        lbMedia.innerHTML = item.type === 'video'
+          ? `<video controls preload="metadata" playsinline src="${item.src}"></video>`
+          : `<img src="${item.src}" alt="${item.title}">`;
+
+        lbTitle.textContent = item.title;
+        lbStamp.textContent = `${item.type === 'video' ? 'Video' : 'Photo'} — ${item.caption}`;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('open');
+        lbMedia.innerHTML = '';
+        document.body.style.overflow = '';
+      };
+
+      const showItems = (filter) => {
+        const filtered = filter === 'all'
+          ? galleryItems
+          : galleryItems.filter(item => filter === 'photo' ? item.type === 'image' : item.type === filter);
+
+        currentItems = filtered;
+        galleryGrid.innerHTML = filtered.map(renderTile).join('');
+
+        galleryGrid.querySelectorAll('.tile').forEach(tile => {
+          tile.addEventListener('click', () => openLightbox(Number(tile.dataset.index)));
+        });
+
+        emptyState.style.display = filtered.length ? 'none' : 'block';
+      };
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          filterButtons.forEach((btn) => btn.classList.remove('active'));
+          button.classList.add('active');
+          showItems(button.dataset.filter);
+        });
+      });
+
+      lbClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+          return;
+        }
+        if (!lightbox.classList.contains('open')) return;
+        if (event.key === 'ArrowRight') {
+          openLightbox((activeIndex + 1) % currentItems.length);
+        }
+        if (event.key === 'ArrowLeft') {
+          openLightbox((activeIndex - 1 + currentItems.length) % currentItems.length);
+        }
+      });
+
+      lbPrev.addEventListener('click', () => {
+        if (!currentItems.length) return;
+        openLightbox((activeIndex - 1 + currentItems.length) % currentItems.length);
+      });
+
+      lbNext.addEventListener('click', () => {
+        if (!currentItems.length) return;
+        openLightbox((activeIndex + 1) % currentItems.length);
+      });
+
+      showItems('all');
+    });
+  </script>
+</body>
+
+</html>

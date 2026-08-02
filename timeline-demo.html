@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Red Neon Timeline Component - Showcase & Code</title>
+    <!-- Google Fonts: Inter and Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ============================================================
+       SHOWCASE PAGE GLOBAL STYLES (Pure dark premium layout)
+       ============================================================ */
+        :root {
+            --clr-red: #e5342a;
+            --clr-red-glow: rgba(229, 52, 42, 0.4);
+            --clr-red-glow-strong: rgba(229, 52, 42, 0.7);
+            --clr-bg-black: #000000;
+            --clr-card-black: #0a0a0a;
+            --clr-text-white: #ffffff;
+            --clr-text-gray: #b0b0b0;
+
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050505;
+            color: var(--clr-text-white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #111 0%, #050505 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: var(--clr-red);
+            box-shadow: 0 0 10px var(--clr-red);
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 2.2rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #ffffff, #e5342a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--clr-text-gray);
+            font-size: 0.95rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-layout {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Column titles */
+        .column-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .column-title::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: var(--clr-red);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--clr-red);
+        }
+
+        /* ============================================================
+       PREVIEW CONTAINER WITH RADIAL GLOW
+       ============================================================ */
+        .preview-column {
+            background: var(--clr-bg-black);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+
+            /* Subtle red radial glow in the corners & center */
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(229, 52, 42, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(229, 52, 42, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(229, 52, 42, 0.03) 0%, transparent 60%);
+        }
+
+        /* ============================================================
+       REUSABLE GLOWING RED TIMELINE STYLES
+       ============================================================ */
+        .timeline-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Vertical connecting line */
+        .timeline-line {
+            position: absolute;
+            left: 18px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom,
+                    rgba(229, 52, 42, 0.05) 0%,
+                    rgba(229, 52, 42, 0.8) 15%,
+                    rgba(229, 52, 42, 0.8) 85%,
+                    rgba(229, 52, 42, 0.05) 100%);
+            box-shadow: 0 0 10px rgba(229, 52, 42, 0.3);
+            border-radius: 4px;
+        }
+
+        .timeline-items {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 55px;
+            /* Offset to make room for line & dot */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .timeline-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+
+        .timeline-item:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Timeline dot connecting card to central line */
+        .timeline-dot {
+            position: absolute;
+            left: 10px;
+            top: 36px;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background: var(--clr-bg-black);
+            border: 3px solid var(--clr-red);
+            box-shadow: 0 0 12px var(--clr-red-glow-strong);
+            z-index: 2;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--clr-red);
+            transform: scale(1.2);
+        }
+
+        /* Event Card Component */
+        .timeline-card {
+            background-color: var(--clr-card-black);
+            border: 2px solid var(--clr-red);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 0 20px var(--clr-red-glow);
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+                border-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 28px var(--clr-red-glow-strong);
+            border-color: #ff554c;
+        }
+
+        /* Card Badge (Time) */
+        .timeline-badge {
+            display: inline-block;
+            background-color: var(--clr-red);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            padding: 6px 14px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(229, 52, 42, 0.3);
+            font-family: var(--font-heading);
+        }
+
+        /* Card Title */
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.45rem;
+            color: var(--clr-text-white);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        /* Card Subtitle / Description */
+        .timeline-desc {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--clr-text-gray);
+            font-weight: 400;
+            margin-bottom: 22px;
+            line-height: 1.5;
+        }
+
+        /* Bottom Divider / Progress bar */
+        .timeline-divider {
+            height: 5px;
+            width: 100%;
+            background-color: var(--clr-red);
+            border-radius: 99px;
+            box-shadow: 0 1px 4px rgba(229, 52, 42, 0.2);
+            transition: width 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Interactive progressive highlight effect for bottom bar */
+        .timeline-divider::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: width 0.4s ease;
+        }
+
+        .timeline-card:hover .timeline-divider::after {
+            width: 100%;
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* ============================================================
+       CODE SHOWCASE CONTROLS & VIEWER
+       ============================================================ */
+        .code-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tabs-container {
+            display: flex;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 6px;
+            gap: 6px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--clr-text-gray);
+            padding: 10px 16px;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.88rem;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            background: var(--clr-red);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(229, 52, 42, 0.3);
+        }
+
+        .code-viewer-container {
+            background: #0d0d0e;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+            max-height: 700px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .code-header {
+            background: #141416;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .code-file-name {
+            font-family: monospace;
+            font-size: 0.88rem;
+            color: #b8b8b8;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--clr-text-gray);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--clr-red);
+            border-color: var(--clr-red);
+            color: #fff;
+        }
+
+        .code-body {
+            padding: 20px;
+            overflow: auto;
+            flex-grow: 1;
+            margin: 0;
+        }
+
+        pre {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #d4d4d4;
+        }
+
+        code {
+            display: block;
+            white-space: pre;
+        }
+
+        /* Syntax Highlighting Colors */
+        .keyword {
+            color: #f92672;
+            font-weight: bold;
+        }
+
+        .comment {
+            color: #75715e;
+            font-style: italic;
+        }
+
+        .string {
+            color: #e6db74;
+        }
+
+        .number {
+            color: #ae81ff;
+        }
+
+        .tag {
+            color: #f92672;
+        }
+
+        .attr {
+            color: #a6e22e;
+        }
+
+        .cls {
+            color: #66d9ef;
+            font-style: italic;
+        }
+
+        .custom {
+            color: #fd971f;
+        }
+
+        .func {
+            color: #66d9ef;
+        }
+
+        /* Success toast styling */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #111;
+            border-left: 4px solid var(--clr-red);
+            padding: 12px 24px;
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 10px rgba(229, 52, 42, 0.2);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Glowing Neon Schedule Timeline</h1>
+        <p>Premium dark style timeline featuring glowing borders, responsive content layout, and a vertical pathway
+            indicator. Ideal for speaker tracks, events, or product stages.</p>
+    </header>
+
+    <main class="main-layout">
+
+        <!-- LEFT: LIVE INTERACTIVE PREVIEW -->
+        <div>
+            <h2 class="column-title">Live Preview</h2>
+            <div class="preview-column">
+
+                <section class="timeline-section">
+                    <div class="timeline-container">
+                        <!-- Vertical Line shadow/glow -->
+                        <div class="timeline-line"></div>
+
+                        <div class="timeline-items" id="timeline-interactive-preview">
+                            <!-- Cards rendered dynamically via JS below -->
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- RIGHT: CODE SOURCING PANEL -->
+        <div>
+            <h2 class="column-title">Source Code</h2>
+            <div class="code-column">
+
+                <!-- Tabs -->
+                <div class="tabs-container">
+                    <button class="tab-btn active" onclick="switchTab('react')">React Component</button>
+                    <button class="tab-btn" onclick="switchTab('html-static')">HTML (Static)</button>
+                    <button class="tab-btn" onclick="switchTab('html-js')">HTML + JS (Dynamic)</button>
+                    <button class="tab-btn" onclick="switchTab('css-only')">CSS Only</button>
+                </div>
+
+                <!-- Code Viewer Box -->
+                <div class="code-viewer-container">
+                    <div class="code-header">
+                        <span class="code-file-name" id="filename-display">Timeline.jsx</span>
+                        <button class="copy-btn" onclick="copyCurrentCode()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy Code
+                        </button>
+                    </div>
+                    <pre class="code-body"><code id="code-snippet-display"></code></pre>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <div class="toast" id="copy-toast">Code copied to clipboard!</div>
+
+    <!-- Dynamic data for Interactive Timeline and Code Tabs -->
+    <script>
+        // Event array used in demo and dynamic options
+        const eventData = [
+            {
+                time: "12:15 PM",
+                title: "TEDX TALK 3",
+                description: "Third speaker. Ideas keep building with groundbreaking security frameworks."
+            },
+            {
+                time: "01:30 PM",
+                title: "AUTOMATED THREAT SCANNING",
+                description: "Fireside chat with industry-leading security analysts on AI intervention vectors."
+            },
+            {
+                time: "03:00 PM",
+                title: "CYBER DEPRECATING PATTERNS",
+                description: "Reviewing legacy theme architectures and transition methodologies."
+            }
+        ];
+
+        // Source Code Snippets for Tabs
+        const codeSnippets = {
+            react: {
+                filename: "Timeline.jsx",
+                code: `<span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;
+<span class="keyword">import</span> <span class="string">'./Timeline.css'</span>; <span class="comment">// Import local styles</span>
+
+<span class="comment">/* Array mapping events dynamically */</span>
+<span class="keyword">const</span> <span class="custom">eventData</span> = [
+  {
+    time: <span class="string">"12:15 PM"</span>,
+    title: <span class="string">"TEDX TALK 3"</span>,
+    description: <span class="string">"Third speaker. Ideas keep building with groundbreaking security frameworks."</span>
+  },
+  {
+    time: <span class="string">"01:30 PM"</span>,
+    title: <span class="string">"AUTOMATED THREAT SCANNING"</span>,
+    description: <span class="string">"Fireside chat with industry-leading security analysts on AI intervention vectors."</span>
+  },
+  {
+    time: <span class="string">"03:00 PM"</span>,
+    title: <span class="string">"CYBER DEPRECATING PATTERNS"</span>,
+    description: <span class="string">"Reviewing legacy theme architectures and transition methodologies."</span>
+  }
+];
+
+<span class="keyword">export default function</span> <span class="func">Timeline</span>() {
+  <span class="keyword">return</span> (
+    &lt;<span class="tag">section</span> <span class="attr">className</span>=<span class="string">"timeline-section"</span>&gt;
+      &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="string">"timeline-container"</span>&gt;
+        
+        <span class="comment">{/* Vertical connecting path line */}</span>
+        &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="string">"timeline-line"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+
+        &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="string">"timeline-items"</span>&gt;
+          {<span class="custom">eventData</span>.<span class="func">map</span>((<span class="custom">event</span>, <span class="custom">index</span>) =&gt; (
+            &lt;<span class="tag">div</span> <span class="attr">key</span>={index} <span class="attr">className</span>=<span class="string">"timeline-item"</span>&gt;
+              
+              <span class="comment">{/* Interactive connecting dot */}</span>
+              &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="string">"timeline-dot"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+              
+              {/* Event Glowing Card */}
+              &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="string">"timeline-card"</span>&gt;
+                &lt;<span class="tag">span</span> <span class="attr">className</span>=<span class="string">"timeline-badge"</span>&gt;{event.time}&lt;/<span class="tag">span</span>&gt;
+                &lt;<span class="tag">h3</span> <span class="attr">className</span>=<span class="string">"timeline-title"</span>&gt;{event.title}&lt;/<span class="tag">h3</span>&gt;
+                &lt;<span class="tag">p</span> <span class="attr">className</span>=<span class="string">"timeline-desc"</span>&gt;{event.description}&lt;/<span class="tag">p</span>&gt;
+                &lt;<span class="tag">div</span> <span class="attr">className</span>=<span class="string">"timeline-divider"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+              &lt;/<span class="tag">div</span>&gt;
+              
+            &lt;/<span class="tag">div</span>&gt;
+          ))}
+        &lt;/<span class="tag">div</span>&gt;
+
+      &lt;/<span class="tag">div</span>&gt;
+    &lt;/<span class="tag">section</span>&gt;
+  );
+}`
+            },
+            "html-static": {
+                filename: "TimelineStatic.html",
+                code: `&lt;<span class="tag">section</span> <span class="attr">class</span>=<span class="string">"timeline-section"</span>&gt;
+  &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-container"</span>&gt;
+    &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-line"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+    
+    &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-items"</span>&gt;
+      
+      <span class="comment">&lt;!-- Card 1 --&gt;</span>
+      &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-item"</span>&gt;
+        &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-dot"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+        &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-card"</span>&gt;
+          &lt;<span class="tag">span</span> <span class="attr">class</span>=<span class="string">"timeline-badge"</span>&gt;12:15 PM&lt;/<span class="tag">span</span>&gt;
+          &lt;<span class="tag">h3</span> <span class="attr">class</span>=<span class="string">"timeline-title"</span>&gt;TEDX TALK 3&lt;/<span class="tag">h3</span>&gt;
+          &lt;<span class="tag">p</span> <span class="attr">class</span>=<span class="string">"timeline-desc"</span>&gt;Third speaker. Ideas keep building with groundbreaking security frameworks.&lt;/<span class="tag">p</span>&gt;
+          &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-divider"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+        &lt;/<span class="tag">div</span>&gt;
+      &lt;/<span class="tag">div</span>&gt;
+
+      <span class="comment">&lt;!-- Card 2 --&gt;</span>
+      &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-item"</span>&gt;
+        &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-dot"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+        &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-card"</span>&gt;
+          &lt;<span class="tag">span</span> <span class="attr">class</span>=<span class="string">"timeline-badge"</span>&gt;01:30 PM&lt;/<span class="tag">span</span>&gt;
+          &lt;<span class="tag">h3</span> <span class="attr">class</span>=<span class="string">"timeline-title"</span>&gt;AUTOMATED THREAT SCANNING&lt;/<span class="tag">h3</span>&gt;
+          &lt;<span class="tag">p</span> <span class="attr">class</span>=<span class="string">"timeline-desc"</span>&gt;Fireside chat with industry-leading security analysts on AI intervention vectors.&lt;/<span class="tag">p</span>&gt;
+          &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-divider"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+        &lt;/<span class="tag">div</span>&gt;
+      &lt;/<span class="tag">div</span>&gt;
+
+    &lt;/<span class="tag">div</span>&gt;
+  &lt;/<span class="tag">div</span>&gt;
+&lt;/<span class="tag">section</span>&gt;`
+            },
+            "html-js": {
+                filename: "TimelineDynamic.html",
+                code: `&lt;<span class="tag">section</span> <span class="attr">class</span>=<span class="string">"timeline-section"</span>&gt;
+  &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-container"</span>&gt;
+    &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-line"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+    &lt;<span class="tag">div</span> <span class="attr">class</span>=<span class="string">"timeline-items"</span> <span class="attr">id</span>=<span class="string">"event-timeline"</span>&gt;&lt;/<span class="tag">div</span>&gt;
+  &lt;/<span class="tag">div</span>&gt;
+&lt;/<span class="tag">section</span>&gt;
+
+&lt;<span class="tag">script</span>&gt;
+  <span class="comment">// Array to map dynamically</span>
+  <span class="keyword">const</span> <span class="custom">events</span> = [
+    {
+      time: <span class="string">"12:15 PM"</span>,
+      title: <span class="string">"TEDX TALK 3"</span>,
+      description: <span class="string">"Third speaker. Ideas keep building with groundbreaking security frameworks."</span>
+    },
+    {
+      time: <span class="string">"01:30 PM"</span>,
+      title: <span class="string">"AUTOMATED THREAT SCANNING"</span>,
+      description: <span class="string">"Fireside chat with industry-leading security analysts on AI intervention vectors."</span>
+    }
+  ];
+
+  <span class="keyword">function</span> <span class="func">renderTimeline</span>() {
+    <span class="keyword">const</span> container = document.<span class="func">getElementById</span>(<span class="string">'event-timeline'</span>);
+    container.innerHTML = <span class="custom">events</span>.<span class="func">map</span>(<span class="custom">event</span> =&gt; \`
+      &lt;div class="timeline-item"&gt;
+        &lt;div class="timeline-dot"&gt;&lt;/div&gt;
+        &lt;div class="timeline-card"&gt;
+          &lt;span class="timeline-badge"\>\${event.time}&lt;/span&gt;
+          &lt;h3 class="timeline-title"\>\${event.title}&lt;/h3&gt;
+          &lt;p class="timeline-desc"\>\${event.description}&lt;/p&gt;
+          &lt;div class="timeline-divider"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    \`).<span class="func">join</span>(<span class="string">''</span>);
+  }
+
+  document.<span class="func">addEventListener</span>(<span class="string">'DOMContentLoaded'</span>, renderTimeline);
+&lt;/<span class="tag">script</span>&gt;`
+            },
+            "css-only": {
+                filename: "Timeline.css",
+                code: `<span class="comment">/* ============================================================
+   REUSABLE GLOWING RED TIMELINE STYLES
+   ============================================================ */</span>
+<span class="cls">:root</span> {
+  <span class="custom">--clr-red</span>: <span class="string">#e5342a</span>;
+  <span class="custom">--clr-red-glow</span>: <span class="string">rgba(229, 52, 42, 0.4)</span>;
+  <span class="custom">--clr-red-glow-strong</span>: <span class="string">rgba(229, 52, 42, 0.7)</span>;
+  <span class="custom">--clr-bg-black</span>: <span class="string">#000000</span>;
+  <span class="custom">--clr-card-black</span>: <span class="string">#0a0a0a</span>;
+  
+  <span class="custom">--font-heading</span>: <span class="string">'Poppins', sans-serif</span>;
+  <span class="custom">--font-body</span>: <span class="string">'Inter', sans-serif</span>;
+}
+
+<span class="comment">/* Main wrapping section */</span>
+<span class="cls">.timeline-section</span> {
+  <span class="attr">width</span>: <span class="number">100%</span>;
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="custom">column</span>;
+  <span class="attr">align-items</span>: <span class="keyword">center</span>;
+  <span class="attr">position</span>: <span class="custom">relative</span>;
+  <span class="attr">background-color</span>: var(<span class="custom">--clr-bg-black</span>);
+  <span class="comment">/* Radial dark red glows in the corners to create a vignette */</span>
+  <span class="attr">background-image</span>: 
+    <span class="func">radial-gradient</span>(<span class="custom">circle at 0% 0%</span>, <span class="func">rgba</span>(<span class="number">229, 52, 42, 0.08</span>) <span class="number">0%</span>, <span class="custom">transparent</span> <span class="number">50%</span>),
+    <span class="func">radial-gradient</span>(<span class="custom">circle at 100% 100%</span>, <span class="func">rgba</span>(<span class="number">229, 52, 42, 0.08</span>) <span class="number">0%</span>, <span class="custom">transparent</span> <span class="number">50%</span>);
+}
+
+<span class="cls">.timeline-container</span> {
+  <span class="attr">position</span>: <span class="custom">relative</span>;
+  <span class="attr">width</span>: <span class="number">100%</span>;
+  <span class="attr">max-width</span>: <span class="number">500px</span>;
+  <span class="attr">margin</span>: <span class="number">0</span> <span class="custom">auto</span>;
+  <span class="attr">padding</span>: <span class="number">40px</span> <span class="number">0</span>;
+}
+
+<span class="comment">/* Pathway connecting line */</span>
+<span class="cls">.timeline-line</span> {
+  <span class="attr">position</span>: <span class="custom">absolute</span>;
+  <span class="attr">left</span>: <span class="number">18px</span>;
+  <span class="attr">top</span>: <span class="number">0</span>;
+  <span class="attr">bottom</span>: <span class="number">0</span>;
+  <span class="attr">width</span>: <span class="number">3px</span>;
+  <span class="attr">background</span>: <span class="func">linear-gradient</span>(<span class="custom">to bottom, 
+    rgba(229, 52, 42, 0.05) 0%, 
+    rgba(229, 52, 42, 0.8) 15%, 
+    rgba(229, 52, 42, 0.8) 85%, 
+    rgba(229, 52, 42, 0.05) 100%</span>
+  );
+  <span class="attr">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="func">rgba</span>(<span class="number">229, 52, 42, 0.3</span>);
+}
+
+<span class="cls">.timeline-items</span> {
+  <span class="attr">display</span>: <span class="keyword">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="custom">column</span>;
+  <span class="attr">gap</span>: <span class="number">40px</span>;
+}
+
+<span class="cls">.timeline-item</span> {
+  <span class="attr">position</span>: <span class="custom">relative</span>;
+  <span class="attr">padding-left</span>: <span class="number">55px</span>;
+}
+
+<span class="comment">/* Connective dot on hover scale */</span>
+<span class="cls">.timeline-dot</span> {
+  <span class="attr">position</span>: <span class="custom">absolute</span>;
+  <span class="attr">left</span>: <span class="number">10px</span>;
+  <span class="attr">top</span>: <span class="number">36px</span>;
+  <span class="attr">width</span>: <span class="number">19px</span>;
+  <span class="attr">height</span>: <span class="number">19px</span>;
+  <span class="attr">border-radius</span>: <span class="number">50%</span>;
+  <span class="attr">background</span>: var(<span class="custom">--clr-bg-black</span>);
+  <span class="attr">border</span>: <span class="number">3px</span> <span class="custom">solid</span> var(<span class="custom">--clr-red</span>);
+  <span class="attr">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">12px</span> var(<span class="custom">--clr-red-glow-strong</span>);
+  <span class="attr">z-index</span>: <span class="number">2</span>;
+  <span class="attr">transition</span>: <span class="custom">background 0.3s ease, transform 0.3s ease</span>;
+}
+
+<span class="cls">.timeline-item:hover .timeline-dot</span> {
+  <span class="attr">background</span>: var(<span class="custom">--clr-red</span>);
+  <span class="attr">transform</span>: <span class="func">scale</span>(<span class="number">1.2</span>);
+}
+
+<span class="comment">/* Event Glowing Card */</span>
+<span class="cls">.timeline-card</span> {
+  <span class="attr">background-color</span>: var(<span class="custom">--clr-card-black</span>);
+  <span class="attr">border</span>: <span class="number">2px</span> <span class="custom">solid</span> var(<span class="custom">--clr-red</span>);
+  <span class="attr">border-radius</span>: <span class="number">18px</span>;
+  <span class="attr">padding</span>: <span class="number">24px</span>;
+  <span class="attr">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">20px</span> var(<span class="custom">--clr-red-glow</span>);
+  <span class="attr">position</span>: <span class="custom">relative</span>;
+  <span class="attr">transition</span>: <span class="custom">transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+              border-color 0.3s ease</span>;
+}
+
+<span class="cls">.timeline-card:hover</span> {
+  <span class="attr">transform</span>: <span class="func">translateY</span>(<span class="number">-4px</span>);
+  <span class="attr">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">28px</span> var(<span class="custom">--clr-red-glow-strong</span>);
+  <span class="attr">border-color</span>: <span class="string">#ff554c</span>;
+}
+
+<span class="comment">/* Positioned Time badge */</span>
+<span class="cls">.timeline-badge</span> {
+  <span class="attr">display</span>: <span class="custom">inline-block;</span>
+  <span class="attr">background-color</span>: var(<span class="custom">--clr-red</span>);
+  <span class="attr">color</span>: <span class="string">#ffffff</span>;
+  <span class="attr">font-weight</span>: <span class="number">700</span>;
+  <span class="attr">font-size</span>: <span class="number">0.78rem</span>;
+  <span class="attr">letter-spacing</span>: <span class="number">0.05em</span>;
+  <span class="attr">padding</span>: <span class="number">6px</span> <span class="number">14px</span>;
+  <span class="attr">border-radius</span>: <span class="number">999px</span>;
+  <span class="attr">text-transform</span>: <span class="custom">uppercase</span>;
+  <span class="attr">margin-bottom</span>: <span class="number">20px</span>;
+  <span class="attr">box-shadow</span>: <span class="number">0</span> <span class="number">2px</span> <span class="number">8px</span> <span class="func">rgba</span>(<span class="number">229, 52, 42, 0.3</span>);
+}
+
+<span class="comment">/* Heavy large Title */</span>
+<span class="cls">.timeline-title</span> {
+  <span class="attr">font-family</span>: var(<span class="custom">--font-heading</span>);
+  <span class="attr">font-weight</span>: <span class="number">800</span>;
+  <span class="attr">font-size</span>: <span class="number">1.45rem</span>;
+  <span class="attr">color</span>: <span class="string">#ffffff</span>;
+  <span class="attr">text-transform</span>: <span class="custom">uppercase</span>;
+  <span class="attr">letter-spacing</span>: <span class="number">0.02em</span>;
+  <span class="attr">margin-bottom</span>: <span class="number">10px</span>;
+}
+
+<span class="comment">/* Subtitle/Description text */</span>
+<span class="cls">.timeline-desc</span> {
+  <span class="attr">font-family</span>: var(<span class="custom">--font-body</span>);
+  <span class="attr">font-size</span>: <span class="number">0.95rem</span>;
+  <span class="attr">color</span>: <span class="string">#b0b0b0</span>;
+  <span class="attr">margin-bottom</span>: <span class="number">22px</span>;
+}
+
+<span class="comment">/* Custom thin red divider at card bottom */</span>
+<span class="cls">.timeline-divider</span> {
+  <span class="attr">height</span>: <span class="number">5px</span>;
+  <span class="attr">width</span>: <span class="number">100%</span>;
+  <span class="attr">background-color</span>: var(<span class="custom">--clr-red</span>);
+  <span class="attr">border-radius</span>: <span class="number">99px</span>;
+}`
+            }
+        };
+
+        // Render original template interactive list on the preview column
+        function renderPreview() {
+            const container = document.getElementById('timeline-interactive-preview');
+            container.innerHTML = eventData.map(event => `
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-badge">${event.time}</span>
+            <h3 class="timeline-title">${event.title}</h3>
+            <p class="timeline-desc">${event.description}</p>
+            <div class="timeline-divider"></div>
+          </div>
+        </div>
+      `).join('');
+        }
+
+        // Active tab store
+        let activeTabId = 'react';
+
+        // Tab switcher handler
+        function switchTab(tabId) {
+            // Remove class active from tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Update visual active state
+            event.target.classList.add('active');
+            activeTabId = tabId;
+
+            // Show content
+            const snippet = codeSnippets[tabId];
+            if (snippet) {
+                document.getElementById('filename-display').innerText = snippet.filename;
+
+                // Remove highlighting markers inside direct text extraction
+                const cleanCodeDiv = document.createElement('div');
+                cleanCodeDiv.innerHTML = snippet.code;
+
+                document.getElementById('code-snippet-display').innerHTML = snippet.code;
+            }
+        }
+
+        // Copy to clipboard helper
+        function copyCurrentCode() {
+            // Extract code block inner text
+            const preElem = document.getElementById('code-snippet-display');
+
+            // We need raw text without html parser coloring tags
+            const rawText = preElem.innerText;
+
+            navigator.clipboard.writeText(rawText).then(() => {
+                const toast = document.getElementById('copy-toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            });
+        }
+
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPreview();
+            // Setup initial react tab state representation
+            document.getElementById('code-snippet-display').innerHTML = codeSnippets['react'].code;
+        });
+    </script>
+</body>
+
+</html>

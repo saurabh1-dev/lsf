@@ -1,0 +1,219 @@
+/* ==========================================================================
+   LEOPARD SECURITY FORCE — Loader Responsive Styles
+   Ensures the cinematic loader looks premium on every device
+   ========================================================================== */
+
+/* ── Ultra-wide screens (>1920px) ── */
+@media (min-width: 1921px) {
+  #loader-logo-svg {
+    width: 400px;
+  }
+
+  .brand-letter {
+    font-size: 40px;
+    letter-spacing: 0.22em;
+  }
+
+  #loader-progress-bar {
+    width: 520px;
+    height: 4px;
+  }
+
+  #loader-percent {
+    font-size: 15px;
+  }
+
+  #loader-logo-wrap {
+    top: 20%;
+  }
+
+  #loader-brand-text {
+    bottom: 24%;
+  }
+}
+
+/* ── Standard desktop (1200–1920px) ── */
+@media (min-width: 1200px) and (max-width: 1920px) {
+  #loader-logo-svg {
+    width: 340px;
+  }
+
+  .brand-letter {
+    font-size: 32px;
+  }
+}
+
+/* ── Small desktop / large tablet (900–1199px) ── */
+@media (min-width: 900px) and (max-width: 1199px) {
+  #loader-logo-svg {
+    width: 280px;
+  }
+
+  .brand-letter {
+    font-size: 26px;
+    letter-spacing: 0.15em;
+  }
+
+  #loader-progress-bar {
+    width: 360px;
+  }
+
+  #loader-brand-text {
+    bottom: 20%;
+  }
+}
+
+/* ── Tablet (600–899px) ── */
+@media (min-width: 600px) and (max-width: 899px) {
+  #loader-logo-wrap {
+    top: 15%;
+  }
+
+  #loader-logo-svg {
+    width: 240px;
+  }
+
+  .brand-letter {
+    font-size: 20px;
+    letter-spacing: 0.12em;
+  }
+
+  #loader-brand-text {
+    bottom: 18%;
+  }
+
+  #loader-progress-bar {
+    width: 300px;
+    height: 2.5px;
+  }
+
+  #loader-percent {
+    font-size: 12px;
+  }
+
+  #loader-progress-wrap {
+    bottom: 7%;
+  }
+}
+
+/* ── Mobile landscape (max-height: 500px, min-width: 600px) ── */
+@media (max-height: 500px) and (min-width: 600px) {
+  #loader-logo-wrap {
+    top: 8%;
+  }
+
+  #loader-logo-svg {
+    width: 200px;
+  }
+
+  .brand-letter {
+    font-size: 16px;
+    letter-spacing: 0.1em;
+  }
+
+  #loader-brand-text {
+    bottom: 22%;
+  }
+
+  #loader-progress-wrap {
+    bottom: 5%;
+  }
+
+  #loader-progress-bar {
+    width: 260px;
+    height: 2px;
+  }
+}
+
+/* ── Mobile portrait (max-width: 599px) ── */
+@media (max-width: 599px) {
+  #loader-logo-wrap {
+    top: 16%;
+  }
+
+  #loader-logo-svg {
+    width: 180px;
+    max-width: 60vw;
+  }
+
+  .brand-letter {
+    font-size: 15px;
+    letter-spacing: 0.1em;
+  }
+
+  #loader-brand-text {
+    bottom: 18%;
+    white-space: normal;
+    max-width: 90vw;
+    text-align: center;
+  }
+
+  #loader-brand-letters {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #loader-progress-bar {
+    width: 220px;
+    height: 2px;
+  }
+
+  #loader-progress-wrap {
+    bottom: 6%;
+    gap: 8px;
+  }
+
+  #loader-percent {
+    font-size: 11px;
+  }
+}
+
+/* ── Small mobile (max-width: 380px) ── */
+@media (max-width: 380px) {
+  #loader-logo-svg {
+    width: 150px;
+  }
+
+  .brand-letter {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+  }
+
+  #loader-progress-bar {
+    width: 180px;
+  }
+
+  #loader-logo-wrap {
+    top: 14%;
+  }
+}
+
+/* ── Retina / High-DPI Adjustments ── */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  #loader-progress-fill {
+    box-shadow:
+      0 0 8px rgba(255, 122, 0, 0.25),
+      0 0 16px rgba(255, 122, 0, 0.08);
+  }
+
+  #loader-progress-glow {
+    box-shadow:
+      0 0 6px rgba(255, 122, 0, 0.7),
+      0 0 14px rgba(255, 122, 0, 0.3);
+  }
+}
+
+/* ── Reduced Motion Preference ── */
+@media (prefers-reduced-motion: reduce) {
+
+  #loader-screen,
+  #loader-screen *,
+  .brand-letter,
+  #loader-logo-svg,
+  #loader-progress-fill,
+  #loader-progress-glow {
+    animation-duration: 0.01s !important;
+    transition-duration: 0.01s !important;
+  }
+}

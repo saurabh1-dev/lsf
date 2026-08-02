@@ -1,0 +1,1206 @@
+/* ============================================================
+   LEOPARD SECURITY FORCE — UNIFIED DESIGN SYSTEM
+   Overrides: Color palette, typography, responsiveness,
+              heading hierarchy, spacing, cleanup.
+   Load AFTER style.css on every page.
+   DO NOT touch: #preloader, #preloader-video, .preloader-*
+   ============================================================ */
+
+/* ── Google Fonts: ONLY 2 fonts ──────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Hide Scrollbars Globally across Mobile, Tablet, and Laptop ── */
+html,
+body {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+::-webkit-scrollbar-track {
+    display: none !important;
+}
+
+::-webkit-scrollbar-thumb {
+    display: none !important;
+}
+
+/* ── Design Tokens ───────────────────────────────────────── */
+:root {
+    /* Primary palette */
+    --clr-orange: #F97316;
+    /* primary CTA orange */
+    --clr-orange-dark: #EA580C;
+    /* darker orange hover */
+    --clr-red: #DC3B0C;
+    /* deep red accent */
+    --clr-glow: rgba(249, 115, 22, 0.25);
+    --clr-glow-sm: rgba(249, 115, 22, 0.14);
+
+    /* Backgrounds */
+    --clr-bg: #0B0B0C;
+    --clr-bg2: #111214;
+    --clr-card: #181A1D;
+    --clr-border: rgba(255, 255, 255, 0.08);
+
+    /* Text */
+    --clr-text: #FFFFFF;
+    --clr-text-sub: #BDBDBD;
+    --clr-text-muted: #7A7A8A;
+
+    /* Typography — 2 fonts only */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', 'Poppins', sans-serif;
+
+    /* Layout */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --trans: 0.25s ease;
+
+    /* Override legacy vars to use our palette */
+    --accent: var(--clr-orange);
+    --accent-dark: var(--clr-orange-dark);
+    --red: var(--clr-orange);
+    --red-deep: var(--clr-orange-dark);
+    --red-dark: var(--clr-orange-dark);
+    --red-glow: var(--clr-glow);
+    --orange: var(--clr-orange);
+    --font-main: var(--font-body);
+    --font-display: var(--font-heading);
+}
+
+/* ── Global Base ─────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--clr-text);
+    background: var(--clr-bg);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ── Heading Hierarchy ───────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading) !important;
+    color: var(--clr-text) !important;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: clamp(2.2rem, 5vw, 4rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+}
+
+h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem) !important;
+    font-weight: 700 !important;
+}
+
+h3 {
+    font-size: clamp(1.15rem, 2.5vw, 1.75rem) !important;
+    font-weight: 700 !important;
+}
+
+h4 {
+    font-size: clamp(1rem, 2vw, 1.35rem) !important;
+    font-weight: 600 !important;
+}
+
+h5,
+h6 {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem) !important;
+    font-weight: 600 !important;
+}
+
+/* Section headings with accent label above */
+.section-label {
+    font-family: var(--font-heading) !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.25em !important;
+    text-transform: uppercase;
+    color: var(--clr-orange) !important;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.section-title {
+    font-family: var(--font-heading) !important;
+    font-size: clamp(1.8rem, 4vw, 3.2rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.05em !important;
+    color: var(--clr-text) !important;
+}
+
+.section-desc {
+    font-family: var(--font-body) !important;
+    font-size: clamp(0.92rem, 1.5vw, 1.05rem) !important;
+    line-height: 1.8 !important;
+    color: var(--clr-text-sub) !important;
+}
+
+/* ── Color Unification ───────────────────────────────────── */
+
+/* Nav brand gradient: unify to orange only */
+.nav-logo-text .brand-name {
+    background: linear-gradient(90deg, var(--clr-orange) 0%, var(--clr-orange-dark) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    font-family: var(--font-heading) !important;
+}
+
+/* Nav CTA button */
+.nav-contact-cta {
+    background: var(--clr-orange) !important;
+    box-shadow: 0 6px 18px var(--clr-glow) !important;
+}
+
+.nav-contact-cta:hover {
+    background: var(--clr-orange-dark) !important;
+    box-shadow: 0 8px 24px var(--clr-glow) !important;
+    transform: translateY(-1px);
+}
+
+/* All primary buttons */
+.btn-primary,
+.btn.btn-primary,
+button.btn-primary {
+    background: var(--clr-orange) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 24px var(--clr-glow-sm) !important;
+    font-family: var(--font-heading) !important;
+    font-weight: 700 !important;
+}
+
+.btn-primary:hover {
+    background: var(--clr-orange-dark) !important;
+    box-shadow: 0 12px 30px var(--clr-glow) !important;
+    transform: translateY(-2px);
+}
+
+/* Outline buttons */
+.btn-outline {
+    border-color: rgba(249, 115, 22, 0.4) !important;
+    color: var(--clr-text) !important;
+}
+
+.btn-outline:hover {
+    border-color: var(--clr-orange) !important;
+    background: var(--clr-glow-sm) !important;
+    color: #fff !important;
+}
+
+/* Icon accent colors are handled via specific containers to avoid forcing all icons. */
+
+/* Onboarding/intake legacy gold/green → orange */
+.onboarding-btn--primary {
+    background: var(--clr-orange) !important;
+    color: #fff !important;
+    box-shadow: 0 10px 28px var(--clr-glow-sm) !important;
+}
+
+.onboarding-btn--primary:hover {
+    background: var(--clr-orange-dark) !important;
+}
+
+.onboarding-brand span,
+.onboarding-typing-line::after {
+    color: var(--clr-orange) !important;
+}
+
+.onboarding-option:hover,
+.onboarding-option:focus-visible {
+    border-color: var(--clr-orange) !important;
+}
+
+.onboarding-option.is-selected {
+    border-color: var(--clr-orange) !important;
+    background: var(--clr-glow-sm) !important;
+}
+
+.onboarding-input:focus {
+    border-color: var(--clr-orange) !important;
+    box-shadow: 0 0 0 4px var(--clr-glow-sm) !important;
+}
+
+.onboarding-progress span {
+    background: var(--clr-orange) !important;
+}
+
+.onboarding-success h3 {
+    color: var(--clr-text) !important;
+}
+
+.onboarding-brand {
+    color: var(--clr-text) !important;
+}
+
+/* Card borders & accent lines */
+.card,
+.service-card,
+.feature-card,
+.stat-card,
+.training-card,
+.gallery-item,
+.team-card {
+    border-color: var(--clr-border) !important;
+}
+
+.card:hover,
+.service-card:hover,
+.feature-card:hover {
+    border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
+/* Intake wizard colors → orange */
+.intake-btn-primary {
+    background: var(--clr-orange) !important;
+}
+
+.intake-btn-primary:hover {
+    background: var(--clr-orange-dark) !important;
+}
+
+.intake-opt.selected {
+    border-color: var(--clr-orange) !important;
+    background: var(--clr-glow-sm) !important;
+}
+
+.intake-progress-fill {
+    background: linear-gradient(90deg, var(--clr-orange), var(--clr-orange-dark)) !important;
+}
+
+.intake-field input:focus,
+.intake-field textarea:focus {
+    border-color: var(--clr-orange) !important;
+    box-shadow: 0 0 0 4px var(--clr-glow-sm) !important;
+}
+
+/* ── NavBar ──────────────────────────────────────────────── */
+.navbar {
+    background: rgba(11, 11, 12, 0.96) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--clr-border) !important;
+    height: 68px !important;
+}
+
+.nav-links a {
+    font-family: var(--font-heading) !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: color var(--trans) !important;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #fff !important;
+}
+
+.nav-links a::after {
+    background: var(--clr-orange) !important;
+}
+
+/* Mobile menu */
+.mobile-menu {
+    background: rgba(11, 11, 12, 0.98) !important;
+    backdrop-filter: blur(16px) !important;
+    border-top: 1px solid var(--clr-border) !important;
+}
+
+.mobile-menu a {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.mobile-menu a:hover {
+    color: var(--clr-orange) !important;
+}
+
+/* ── Hamburger — show at ≤768px ──────────────────────────── */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: flex !important;
+    }
+
+    .navbar {
+        height: 60px !important;
+    }
+
+    .navbar .container {
+        padding: 0 16px !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex !important;
+    }
+
+    .hamburger {
+        display: none !important;
+    }
+}
+
+/* ── Hero Section ────────────────────────────────────────── */
+.hero-content h1,
+.hero h1 {
+    font-size: clamp(2.4rem, 6vw, 5rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.05em !important;
+    line-height: 1.05 !important;
+}
+
+.hero-badge,
+.hero-tag,
+.hero-eyebrow {
+    font-family: var(--font-heading) !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.22em !important;
+    color: var(--clr-orange) !important;
+    text-transform: uppercase !important;
+}
+
+/* ── Container ───────────────────────────────────────────── */
+.container {
+    width: 90% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* ── Section Spacing ─────────────────────────────────────── */
+section {
+    padding: clamp(56px, 8vw, 100px) 0;
+}
+
+/* ── Global Body Font ────────────────────────────────────── */
+p,
+li,
+label,
+input,
+textarea,
+select,
+button,
+span {
+    font-family: var(--font-body) !important;
+}
+
+/* Override Inter import in animations.css — point to Poppins/Inter pair only */
+.brand-letter {
+    font-family: var(--font-heading) !important;
+    font-weight: 700 !important;
+}
+
+#loader-percent,
+#loader-percent * {
+    font-family: var(--font-body) !important;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
+.card,
+.service-card,
+.feature-card,
+[class*="card"] {
+    background: var(--clr-card) !important;
+    border: 1px solid var(--clr-border) !important;
+    border-radius: var(--radius-md) !important;
+}
+
+/* ── Stats banner accent ─────────────────────────────────── */
+.stat-number,
+.counter,
+.stats-number,
+[class*="stat"][class*="number"],
+[class*="counter"] {
+    font-family: var(--font-heading) !important;
+    color: var(--clr-orange) !important;
+    font-weight: 800 !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.footer {
+    background: #080809 !important;
+    border-top: 1px solid var(--clr-border) !important;
+}
+
+.footer h4,
+.footer-heading {
+    font-family: var(--font-heading) !important;
+    color: var(--clr-text) !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+}
+
+.footer a:hover {
+    color: var(--clr-orange) !important;
+}
+
+/* ── Subpage hero headings ───────────────────────────────── */
+.subpage-hero h1,
+.page-hero h1,
+.hero-title {
+    font-family: var(--font-heading) !important;
+    font-size: clamp(2rem, 5vw, 3.8rem) !important;
+    font-weight: 800 !important;
+}
+
+/* ── FAQ ─────────────────────────────────────────────────── */
+.faq-question {
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem) !important;
+}
+
+/* ── Training cards ──────────────────────────────────────── */
+.training-card h3,
+.module-title {
+    font-family: var(--font-heading) !important;
+    color: var(--clr-text) !important;
+}
+
+/* ── Testimonials ────────────────────────────────────────── */
+.testimonial-card {
+    background: var(--clr-card) !important;
+    border: 1px solid var(--clr-border) !important;
+}
+
+/* ── Fix hardcoded rogue colors ──────────────────────────── */
+/* onboarding gold gradient → orange */
+.onboarding-panel--accent {
+    background: linear-gradient(135deg,
+            rgba(249, 115, 22, 0.12),
+            rgba(30, 30, 35, 0.3)) !important;
+}
+
+/* nav brand-name rogue gradient */
+.nav-logo-text .brand-name {
+    background: var(--clr-orange) !important;
+    background: linear-gradient(90deg, var(--clr-orange), var(--clr-orange-dark)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+   RESPONSIVE LAYOUT & BREAKPOINT OPTIMIZATIONS
+   ──────────────────────────────────────────────────────────── */
+
+/* Global layout constraints to prevent horizontal overflow */
+html,
+body {
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100%;
+}
+
+img,
+video,
+canvas,
+svg {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Base Responsive Container width */
+.container,
+.wrap {
+    width: 90% !important;
+    max-width: 1320px !important;
+    /* Ensure centered layout up to 1440px+ */
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* ============================================================
+   TABLET & CONDENSED VIEW BREAKPOINT (max-width: 1023px)
+   ============================================================ */
+@media (max-width: 1023px) {
+
+    /* 1. Spacing & General Layout */
+    section {
+        padding: clamp(48px, 6vw, 76px) 0 !important;
+    }
+
+    body {
+        font-size: 15.5px !important;
+    }
+
+    /* 2. Responsive Typography (Fluid clamp fallback scales) */
+    h1 {
+        font-size: clamp(2rem, 6vw, 3.2rem) !important;
+        letter-spacing: 2px !important;
+    }
+
+    h2 {
+        font-size: clamp(1.5rem, 5vw, 2.2rem) !important;
+    }
+
+    h3 {
+        font-size: clamp(1.1rem, 4vw, 1.45rem) !important;
+    }
+
+    .section-title {
+        font-size: clamp(1.6rem, 5vw, 2.4rem) !important;
+    }
+
+    /* 3. Header & Dropdown Navigation Switch */
+    .nav-links {
+        display: none !important;
+        /* Switch to hamburger layout earlier */
+    }
+
+    .hamburger {
+        display: flex !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin-left: auto !important;
+        cursor: pointer;
+    }
+
+    .navbar {
+        height: 60px !important;
+    }
+
+    .navbar .container {
+        padding: 0 16px !important;
+    }
+
+    .navbar .nav-contact-cta {
+        display: none !important;
+        /* Hide to save top bar space */
+    }
+
+    /* 4. Grids & Columns (Transforming to 2-columns) */
+    .services-grid,
+    .why-grid,
+    .features-grid,
+    .team-grid,
+    .gal-grid,
+    .stats-grid,
+    .stats-wrap,
+    .career-page .cards,
+    .career-page .process {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+
+    /* Centered homepage about grid stacking: Image 1 Top -> Text Middle -> Image 2 Bottom */
+    .about-grid-centered {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 32px !important;
+        text-align: center !important;
+    }
+
+    .about-grid-centered .about-image-left {
+        order: 1 !important;
+    }
+
+    .about-grid-centered .about-text {
+        order: 2 !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+    }
+
+    .about-grid-centered .about-image-right {
+        order: 3 !important;
+    }
+
+    .about-grid-centered .about-rotator {
+        height: 340px !important;
+        min-height: 340px !important;
+        width: 100% !important;
+        max-width: 340px !important;
+        margin: 0 auto !important;
+    }
+
+    /* CEO welcome message grid */
+    .ceo-exact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    .ceo-exact-image-col img {
+        height: 380px !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Career and training page headers */
+    .career-page .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+        text-align: center !important;
+    }
+
+    .career-page .radar-wrap {
+        max-width: 340px !important;
+        margin: 0 auto !important;
+    }
+
+    .career-page .hero h1 {
+        font-size: clamp(38px, 6.5vw, 68px) !important;
+    }
+
+    .career-page .hero-metrics {
+        justify-content: center !important;
+        gap: 20px !important;
+    }
+
+    /* 5. Footer Layout for Tablet */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 32px !important;
+    }
+}
+
+/* ============================================================
+   MOBILE VIEWPORT BREAKPOINT (max-width: 767px)
+   ============================================================ */
+@media (max-width: 767px) {
+
+    /* 1. Global Container Spacing overrides */
+    .container {
+        width: 92% !important;
+    }
+
+    .wrap {
+        padding: 0 16px !important;
+        width: 100% !important;
+    }
+
+    /* 2. Flat Grid Collapse (Convert to single column everywhere) */
+    .services-grid,
+    .why-grid,
+    .features-grid,
+    .team-grid,
+    .gal-grid,
+    .stats-grid,
+    .stats-wrap,
+    .footer-grid,
+    .career-page .cards,
+    .career-page .process,
+    .career-page .strip,
+    .training-page-content .filmstrip,
+    .training-page-content .triad,
+    .training-page-content .ticker {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* Testimonial Card Size Reduction for Mobile */
+    .testimonial-card {
+        flex: 0 0 min(82vw, 310px) !important;
+        padding: 20px 18px !important;
+        border-radius: 14px !important;
+    }
+
+    .testimonial-quote {
+        font-size: 1.8rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .testimonial-stars {
+        font-size: 0.85rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .testimonial-card p {
+        font-size: 0.86rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 16px !important;
+    }
+
+    .testimonial-author {
+        gap: 10px !important;
+    }
+
+    .testimonial-avatar {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .testimonial-author h4 {
+        font-size: 0.9rem !important;
+        margin-bottom: 2px !important;
+    }
+
+    .testimonial-author span {
+        font-size: 0.75rem !important;
+    }
+
+    /* Timeline Section Mobile Layout */
+    .timeline-dots,
+    #timelineDots {
+        display: none !important;
+    }
+
+    .timeline-horizontal-wrapper {
+        min-height: auto !important;
+        height: auto !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    .timeline-center-line {
+        display: none !important;
+    }
+
+    .journey-timeline-track {
+        min-width: 100% !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+        padding: 0 0 0 38px !important;
+        position: relative !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+    }
+
+    .journey-timeline-track::before {
+        content: '' !important;
+        display: block !important;
+        position: absolute !important;
+        top: 16px !important;
+        bottom: 16px !important;
+        left: 14px !important;
+        width: 3px !important;
+        background: linear-gradient(180deg, #E1441C 0%, #E1441C 85%, rgba(225, 68, 28, 0.2) 100%) !important;
+        box-shadow: 0 0 10px rgba(225, 68, 28, 0.7) !important;
+        z-index: 1 !important;
+    }
+
+    .journey .timeline-item,
+    .journey .timeline-item.timeline-above,
+    .journey .timeline-item.timeline-below {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        transform: none !important;
+        position: relative !important;
+        display: block !important;
+    }
+
+    .journey .timeline-node,
+    .timeline-node {
+        display: flex !important;
+        position: absolute !important;
+        left: -24px !important;
+        top: 26px !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 5 !important;
+        width: 22px !important;
+        height: 22px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .journey .node-dot,
+    .node-dot {
+        width: 14px !important;
+        height: 14px !important;
+        background: #E1441C !important;
+        border: 2px solid #0B0B0B !important;
+        border-radius: 50% !important;
+        box-shadow: 0 0 12px #E1441C, 0 0 6px rgba(225, 68, 28, 0.9) !important;
+    }
+
+    .journey .timeline-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 18px 20px !important;
+        margin: 0 !important;
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        box-sizing: border-box !important;
+        background: rgba(18, 18, 18, 0.95) !important;
+        border: 1px solid rgba(225, 68, 28, 0.4) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6) !important;
+    }
+
+    .journey .timeline-card h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 6px !important;
+        color: #FFFFFF !important;
+    }
+
+    .journey .timeline-card p {
+        font-size: 0.85rem !important;
+        line-height: 1.55 !important;
+        color: #DBDBDB !important;
+    }
+
+    /* 3. Navigation Menu Format */
+    .mobile-menu {
+        gap: 12px !important;
+        padding: 84px 20px 24px !important;
+        transform: translateY(-100%) !important;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    }
+
+    .mobile-menu.open {
+        transform: translateY(0) !important;
+    }
+
+    .mobile-menu a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 340px !important;
+        padding: 12px 20px !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.08em !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        border-bottom: none !important;
+        min-height: 48px !important;
+        /* safe touch size */
+    }
+
+    /* 4. Button & Touch Interactions */
+    .btn,
+    .btn-primary,
+    .btn-ghost,
+    .btn-outline,
+    .btn-fill,
+    button:not(.faq-question):not(.lsf-chat-close):not(.lsf-chat-opt) {
+        width: 100% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 44px !important;
+        padding: 12px 24px !important;
+        font-size: 0.88rem !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    .hero-buttons,
+    .hero-ctas,
+    .hero-actions,
+    .cta-actions,
+    .career-page .hero-ctas {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 12px !important;
+    }
+
+    /* 5. Forms Layout Columns Stacking */
+    .cf-two-col {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .cf-input,
+    .intake-field input,
+    .intake-field textarea,
+    .cf-select {
+        min-height: 44px !important;
+        font-size: 14.5px !important;
+    }
+
+    .cf-radio-label {
+        min-height: 44px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    /* Newsletter form elements stacking */
+    .footer-newsletter {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+    }
+
+    .footer-newsletter input {
+        width: 100% !important;
+        min-height: 44px !important;
+        margin-right: 0 !important;
+        font-size: 14px !important;
+    }
+
+    .footer-newsletter button {
+        width: 100% !important;
+        min-height: 44px !important;
+        padding: 12px !important;
+    }
+
+    /* Career modal popup frame */
+    .career-modal-card {
+        padding: 24px 18px !important;
+        max-height: 85vh !important;
+    }
+
+    .career-modal-close {
+        top: 12px !important;
+        right: 12px !important;
+        font-size: 24px !important;
+        padding: 8px !important;
+    }
+
+    /* 6. Footer Stacking */
+    .footer-col {
+        text-align: center !important;
+    }
+
+    .footer-logo-panel {
+        justify-content: center !important;
+    }
+
+    .footer-contact-item {
+        justify-content: center !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+
+    .footer-contact-icon {
+        margin-bottom: 2px !important;
+    }
+
+    .footer-newsletter-col {
+        align-items: center !important;
+    }
+
+    .newsletter-text {
+        text-align: center !important;
+    }
+
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 12px !important;
+        text-align: center !important;
+        padding: 20px 0 !important;
+    }
+
+    .footer-bottom-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 16px !important;
+    }
+
+    /* 7. CEO Card on About Us Mobile */
+    .ab-ceo-card {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+
+    .ab-ceo-avatar {
+        margin: 0 auto !important;
+    }
+
+    /* 8. Career post row items styling */
+    .career-page .post {
+        grid-template-columns: 1fr !important;
+        grid-template-areas: "code" "role" "apply" !important;
+        justify-items: center !important;
+        text-align: center !important;
+        padding: 18px 12px !important;
+        gap: 10px !important;
+        background: rgba(255, 255, 255, 0.02) !important;
+        border: 1px solid var(--clr-border) !important;
+        margin-bottom: 12px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Ladder details list */
+    .career-page .rank {
+        grid-template-columns: 50px 1fr !important;
+        gap: 14px !important;
+    }
+
+    .career-page .rank .badge {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .career-page .rank .badge .tier {
+        font-size: 20px !important;
+    }
+
+    .career-page .rank .body-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+    }
+
+    .career-page .rank .rname {
+        font-size: 1.15rem !important;
+    }
+
+    /* 9. Intake Overlay Responsive Adjustments */
+    .intake-card {
+        padding: 1.5rem !important;
+        border-radius: 12px !important;
+        max-width: 95% !important;
+        margin: 0 auto !important;
+    }
+
+    .intake-options:not(.timeline-horizontal) {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
+
+    .intake-btn {
+        min-height: 46px !important;
+    }
+}
+
+/* ============================================================
+   TINY VIEWPOTS & SMALL MOBILE (max-width: 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+
+    /* 1. Global typography tweaks */
+    body {
+        font-size: 14.5px !important;
+    }
+
+    /* 2. Floating action handles adjustments */
+    #lsf-left-floaters {
+        left: 12px !important;
+        bottom: 12px !important;
+        gap: 8px !important;
+    }
+
+    #lsf-left-floaters .lsf-floater {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    #lsf-right-floaters {
+        right: 12px !important;
+        bottom: 72px !important;
+    }
+
+    .lsf-floater-ai {
+        width: 54px !important;
+        height: 54px !important;
+    }
+
+    .lsf-floater-ai .ai-btn-icon {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    .lsf-floater-ai .ai-btn-icon i {
+        font-size: 0.88rem !important;
+    }
+
+    .lsf-floater-ai .ai-btn-label {
+        font-size: 0.58rem !important;
+        padding: 3px 8px !important;
+    }
+
+    #backToTop {
+        right: 12px !important;
+        bottom: 12px !important;
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    /* 3. Indicators alignment */
+    .scroll-indicator {
+        bottom: 16px !important;
+    }
+
+    .scroll-indicator .mouse {
+        width: 18px !important;
+        height: 28px !important;
+    }
+
+    .scroll-indicator span {
+        font-size: 0.65rem !important;
+        margin-top: 4px !important;
+    }
+
+    /* 4. Subpage hero heading scaling */
+    .subpage-hero h1,
+    .page-hero h1,
+    .hero-title {
+        font-size: 1.6rem !important;
+        line-height: 1.25 !important;
+    }
+
+    /* 5. Center about gallery rotator height */
+    .about-grid-centered .about-rotator {
+        height: 300px !important;
+        min-height: 300px !important;
+    }
+
+    /* CEO message image */
+    .ceo-exact-image-col img {
+        height: 260px !important;
+    }
+}
