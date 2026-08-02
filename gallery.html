@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿Si have uploade completye code of website on git hub biu problem i aboiut image i have upload image but image are not
+appear in web
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +11,7 @@
     content="Explore our training academy, drill operations, static guarding exercises, VIP bodyguard details, and remote command team in action.">
   <meta name="keywords"
     content="security gallery, defense operations, guard training, bodyguard photos, security command, cash van guard, India">
-  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="tracker.css">
   <link rel="stylesheet" href="design-system.css">
@@ -488,7 +490,7 @@
     <div class="container">
       <a href="index.html" class="nav-logo" aria-label="Leopard Security Force">
         <div class="brand-circle">
-          <img src="images/logo.png" alt="Leopard Shield Logo">
+          <img src="logo.png" alt="Leopard Shield Logo">
         </div>
         <div class="nav-logo-text">
           <div class="brand-name">LEOPARD</div>
@@ -579,7 +581,7 @@
       <div class="footer-grid">
         <div class="footer-col footer-brand-col">
           <div class="footer-logo-panel">
-            <img src="images/logo.png" alt="Leopard Security Force Logo"
+            <img src="logo.png" alt="Leopard Security Force Logo"
               style="width: 56px; height: 56px; object-fit: contain;">
             <div class="footer-logo-text">
               <span>LEOPARD</span> SECURITY FORCE
@@ -827,14 +829,14 @@
 
       const createItems = () => {
         const images = imageFiles.map((name) => ({
-          src: `images/${name}`,
+          src: encodeURIComponent(name),
           type: 'image',
           title: formatTitle(name),
           caption: 'Field archive image'
         }));
 
         const videos = videoFiles.map((name) => ({
-          src: `images/${name}`,
+          src: `loadervideo.mp4`,
           type: 'video',
           title: formatTitle(name),
           caption: 'Field archive video'
